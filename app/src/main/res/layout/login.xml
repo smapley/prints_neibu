@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scene"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context="com.bignerdranch.android.transitionexample.TransitionFragment">
+
+
+    <EditText
+        android:id="@+id/log_et_username1"
+        android:layout_above="@+id/log_et_password1"
+        android:layout_centerHorizontal="true"
+        android:hint="用户名1"
+        style="@style/editext" />
+
+    <EditText
+        android:id="@+id/log_et_password1"
+        style="@style/editext"
+        android:layout_above="@+id/log_et_username2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:hint="密码1"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/log_et_username2"
+        style="@style/editext"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:hint="用户名2"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/log_et_password2"
+        style="@style/editext"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/log_et_username2"
+        android:hint="密码2"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/log_bt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/chengse_select"
+        android:onClick="checkLogin"
+        android:layout_below="@+id/log_et_password2"
+        android:layout_centerHorizontal="true"
+        android:text="登陆"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="免责声明：本工具为私人订制用于实现打印网页数据，免费使用，仅供学习交流，违者后果自负。"
+        android:layout_below="@id/log_bt_submit"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/red"/>
+
+</RelativeLayout>
