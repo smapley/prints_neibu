@@ -18,8 +18,7 @@
     <EditText
         android:id="@+id/log_et_password1"
         style="@style/editext"
-        android:layout_above="@+id/log_et_username2"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:hint="密码1"
         android:inputType="textPassword" />
@@ -30,6 +29,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:hint="用户名2"
+        android:visibility="gone"
         android:inputType="text"/>
 
     <EditText
@@ -39,6 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/log_et_username2"
         android:hint="密码2"
+        android:visibility="gone"
         android:inputType="textPassword" />
 
     <Button
@@ -50,7 +51,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/chengse_select"
         android:onClick="checkLogin"
-        android:layout_below="@+id/log_et_password2"
+        android:layout_below="@+id/log_et_password1"
         android:layout_centerHorizontal="true"
         android:text="登陆"
         android:textSize="18sp"

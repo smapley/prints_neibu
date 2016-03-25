@@ -17,7 +17,7 @@ public class MyData {
 
     public static String IP;
 
-    private static String URL_INDEX1 = "xiazhuX1.php";
+    private static String URL_INDEX1 = "xiazhuX2.php";
     private static String URL_TUIMA = "tuimaG4.php";
     private static String URL_GETJILU1 = "getJilu1.php";
     private static String URL_GETJILU2 = "getJilu2.php";
@@ -35,11 +35,15 @@ public class MyData {
     private static String URL_DELTINGYA = "delTingya.php";
     private static String URL_reggaimi = "reggaimi.php";
     private static String URL_getTongzhi = "getTongzhi.php";
-    public static String URL_XIAZAI = "http://www.newera98.com/dayin1.apk";
+    private static String URL_XIAZAI = "dayin1.apk";
 
 
     public static String getBaseUrl() {
         return "http://" + IP + "/dayin/";
+    }
+
+    public static String getUrlXiazai() {
+        return getBaseUrl() + URL_XIAZAI;
     }
 
     public static String getUrlIndex1() {

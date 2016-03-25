@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,6 +26,7 @@ import com.smapley.prints2.http.params.GetTongZhiParams;
 import com.smapley.prints2.http.service.GetTongZhiService;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
+import com.smapley.prints2.util.UpdateAppManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -165,8 +165,8 @@ public class Set extends Fragment {
                             builder.setPositiveButton("下载更新", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MyData.URL_XIAZAI));
-                                    startActivity(intent);
+                                    UpdateAppManager updateManager = new UpdateAppManager(getActivity());
+                                    updateManager.checkUpdateInfo();
                                 }
                             });
                         } else {

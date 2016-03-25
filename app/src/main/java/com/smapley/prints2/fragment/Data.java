@@ -1,8 +1,6 @@
 package com.smapley.prints2.fragment;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,22 +37,22 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
 
     private TextView item11;
     private TextView item12;
-    private EditText item13;
+    private TextView item13;
     private TextView item21;
     private TextView item22;
-    private EditText item23;
+    private TextView item23;
     private TextView item31;
     private TextView item32;
-    private EditText item33;
+    private TextView item33;
     private TextView item41;
     private TextView item42;
-    private EditText item43;
+    private TextView item43;
     private TextView item51;
     private TextView item52;
-    private EditText item53;
+    private TextView item53;
     private TextView item61;
     private TextView item62;
-    private EditText item63;
+    private TextView item63;
 
     private TextView item1;
     private TextView item2;
@@ -64,11 +62,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
 
     private TextView edu;
 
-    private TextView mode1;
-    private TextView mode2;
-
-    private boolean mode1_state = false;
-    private boolean mode2_state = false;
 
     private ScrollView scrollView;
     private ProgressDialog dialog;
@@ -90,46 +83,27 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
         edu=(TextView)view.findViewById(R.id.edu);
         tv_title2=(TextView)view.findViewById(R.id.title_item2);
         tv_title3=(TextView)view.findViewById(R.id.title_item3);
-        tv_title3.setText("保存");
-        tv_title3.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
-                builder.setTitle("提示：");
-                builder.setMessage("赔率填写错误会导致回水变为0，需再次修改");
-                builder.setNegativeButton("取消", null);
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        upData();
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.create().show();
-            }
-        });
+
 
         item11 = (TextView) view.findViewById(R.id.data_tv_item11);
         item12 = (TextView) view.findViewById(R.id.data_tv_item12);
-        item13 = (EditText) view.findViewById(R.id.data_ev_item13);
+        item13 = (TextView) view.findViewById(R.id.data_ev_item13);
         item21 = (TextView) view.findViewById(R.id.data_tv_item21);
         item22 = (TextView) view.findViewById(R.id.data_tv_item22);
-        item23 = (EditText) view.findViewById(R.id.data_ev_item23);
+        item23 = (TextView) view.findViewById(R.id.data_ev_item23);
         item31 = (TextView) view.findViewById(R.id.data_tv_item31);
         item32 = (TextView) view.findViewById(R.id.data_tv_item32);
-        item33 = (EditText) view.findViewById(R.id.data_ev_item33);
+        item33 = (TextView) view.findViewById(R.id.data_ev_item33);
         item41 = (TextView) view.findViewById(R.id.data_tv_item41);
         item42 = (TextView) view.findViewById(R.id.data_tv_item42);
-        item43 = (EditText) view.findViewById(R.id.data_ev_item43);
+        item43 = (TextView) view.findViewById(R.id.data_ev_item43);
         item51 = (TextView) view.findViewById(R.id.data_tv_item51);
         item52 = (TextView) view.findViewById(R.id.data_tv_item52);
-        item53 = (EditText) view.findViewById(R.id.data_ev_item53);
+        item53 = (TextView) view.findViewById(R.id.data_ev_item53);
         item61 = (TextView) view.findViewById(R.id.data_tv_item61);
         item62 = (TextView) view.findViewById(R.id.data_tv_item62);
-        item63 = (EditText) view.findViewById(R.id.data_ev_item63);
+        item63 = (TextView) view.findViewById(R.id.data_ev_item63);
 
-        mode1 = (TextView) view.findViewById(R.id.data_tv_mode1);
-        mode2 = (TextView) view.findViewById(R.id.data_tv_mode2);
 
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
 
@@ -148,18 +122,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
         item53.setOnFocusChangeListener(this);
         item63.setOnFocusChangeListener(this);
 
-        mode1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choseMode(1);
-            }
-        });
-        mode2.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choseMode(0);
-            }
-        });
 
         item1 = (TextView) view.findViewById(R.id.data_tv_item1);
         item2 = (TextView) view.findViewById(R.id.data_tv_item2);
@@ -167,23 +129,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
         item4 = (TextView) view.findViewById(R.id.data_tv_item4);
         item5 = (TextView) view.findViewById(R.id.data_tv_item5);
 
-    }
-
-    private void choseMode(int i) {
-        switch (i) {
-            case 1:
-                mode1_state = true;
-                mode2_state = false;
-                mode2.setBackgroundResource(R.drawable.textview_circle);
-                mode1.setBackgroundResource(R.drawable.textview_circle2);
-                break;
-            case 0:
-                mode2_state = true;
-                mode1_state = false;
-                mode1.setBackgroundResource(R.drawable.textview_circle);
-                mode2.setBackgroundResource(R.drawable.textview_circle2);
-                break;
-        }
     }
 
     public void upData() {
@@ -199,7 +144,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
                 map.put("erx", item43.getText().toString());
                 map.put("sanx", item53.getText().toString());
                 map.put("six", item63.getText().toString());
-                map.put("luma", mode1_state ? 1 : 0);
                 mhandler.obtainMessage(UPDATA, HttpUtils.updata(map, MyData.getUrlUpdataziliao())).sendToTarget();
             }
         }).start();
@@ -255,7 +199,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
                         item62.setText(result.get("7").get(1) == null ? "" : result.get("7").get(1));
                         item63.setText(result.get("7").get(2) == null ? "" : result.get("7").get(2));
 
-                        choseMode(Integer.parseInt(result1.get("luma").toString()));
                         break;
                     case UPDATA:
                         dialog.dismiss();

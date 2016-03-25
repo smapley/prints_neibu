@@ -393,18 +393,7 @@ public class Print extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_user:
-                if (MyData.User == 1) {
-                    MyData.User = 2;
-                    MyData.UserName = MyData.UserName2;
-                    MyData.PassWord = MyData.PassWord2;
-                    getData();
-                } else if (MyData.User == 2) {
-                    MyData.User = 1;
-                    MyData.UserName = MyData.UserName1;
-                    MyData.PassWord = MyData.PassWord1;
-                    getData();
-                }
-                title_user.setText(MyData.UserName);
+
                 break;
             case R.id.key_item4:
                 if (xian == 0) {
@@ -616,7 +605,7 @@ public class Print extends Fragment implements View.OnClickListener {
                         }
                         if (result != null && !result.equals("")) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setTitle("下注失败的号码：").setMessage(result)
+                            builder.setTitle("提示：").setMessage(result)
                                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
