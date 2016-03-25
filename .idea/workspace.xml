@@ -26,22 +26,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UpdateAppManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UpdateAppManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/UpdateAppManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5277778">
+            <state vertical-scroll-proportion="0.0">
               <caret line="113" column="56" selection-start-line="113" selection-start-column="56" selection-end-line="113" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Print.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Print.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="607" column="48" selection-start-line="607" selection-start-column="48" selection-end-line="607" selection-end-column="48" />
-              <folding />
+            <state vertical-scroll-proportion="0.5410628">
+              <caret line="596" column="84" selection-start-line="596" selection-start-column="84" selection-end-line="596" selection-end-column="84" />
+              <folding>
+                <element signature="e#4440#4466#0" expanded="true" />
+                <element signature="e#6531#6557#0" expanded="true" />
+                <element signature="e#19773#27896#0" expanded="true" />
+                <element signature="e#25628#25956#0" expanded="true" />
+                <element signature="e#25955#25956#0" expanded="true" />
+                <element signature="e#26109#26124#0" expanded="true" />
+                <element signature="e#27138#27153#0" expanded="true" />
+                <element signature="e#27895#27896#0" expanded="true" />
+                <element signature="e#28558#28573#0" expanded="true" />
+                <element signature="e#28665#28680#0" expanded="true" />
+                <element signature="e#29066#29081#0" expanded="true" />
+                <element signature="e#29173#29188#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,6 +75,11 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/百度云同步盘/Work/Studio/KEY/Key.jks" />
+    <option name="KEY_ALIAS" value="key" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -1805,9 +1823,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Set.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/MyData.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/UpdateAppManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/ThreadSleep.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
       </list>
     </option>
   </component>
@@ -1815,8 +1834,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="235" />
-    <option name="y" value="80" />
+    <option name="x" value="-14" />
+    <option name="y" value="25" />
     <option name="width" value="1920" />
     <option name="height" value="974" />
   </component>
@@ -2103,6 +2122,10 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$USER_HOME$/百度云同步盘/Work/Studio/KEY/Key.jks" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -2278,7 +2301,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="235" y="80" width="1920" height="974" extended-state="6" />
+    <frame x="-14" y="25" width="1920" height="974" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2338,14 +2361,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="607" column="48" selection-start-line="607" selection-start-column="48" selection-end-line="607" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/MyData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2361,9 +2376,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/UpdateAppManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5277778">
+        <state vertical-scroll-proportion="0.0">
           <caret line="113" column="56" selection-start-line="113" selection-start-column="56" selection-end-line="113" selection-end-column="56" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/ThreadSleep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16062802">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5410628">
+          <caret line="596" column="84" selection-start-line="596" selection-start-column="84" selection-end-line="596" selection-end-column="84" />
+          <folding>
+            <element signature="e#4440#4466#0" expanded="true" />
+            <element signature="e#6531#6557#0" expanded="true" />
+            <element signature="e#19773#27896#0" expanded="true" />
+            <element signature="e#25628#25956#0" expanded="true" />
+            <element signature="e#25955#25956#0" expanded="true" />
+            <element signature="e#26109#26124#0" expanded="true" />
+            <element signature="e#27138#27153#0" expanded="true" />
+            <element signature="e#27895#27896#0" expanded="true" />
+            <element signature="e#28558#28573#0" expanded="true" />
+            <element signature="e#28665#28680#0" expanded="true" />
+            <element signature="e#29066#29081#0" expanded="true" />
+            <element signature="e#29173#29188#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
