@@ -14,9 +14,11 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.smapley.prints2.R;
 
@@ -34,11 +36,12 @@ public class UpdateAppManager {
     // 外存sdcard存放路径
     private static final String FILE_PATH = Environment.getExternalStorageDirectory() + FILE_SEPARATOR + "Download" + FILE_SEPARATOR;
     // 下载应用存放全路径
-    private static final String FILE_NAME = FILE_PATH + "neibu.apk";
+    private static final String FILE_NAME = FILE_PATH + "denglu.apk";
     // 更新应用版本标记
     private static final int UPDARE_TOKEN = 0x29;
     // 准备安装新版本应用标记
     private static final int INSTALL_TOKEN = 0x31;
+    private static final int UPDATE_ERROR = 0;
 
     private Context context;
     private String message = "检测到本程序有新版本发布，建议您更新！";
@@ -62,7 +65,9 @@ public class UpdateAppManager {
                 case UPDARE_TOKEN:
                     progressBar.setProgress(curProgress);
                     break;
-
+                case UPDATE_ERROR:
+                    Toast.makeText(context,"更新失败，请稍后重试！",Toast.LENGTH_LONG).show();
+                    break;
                 case INSTALL_TOKEN:
                     installApp();
                     break;
@@ -111,30 +116,23 @@ public class UpdateAppManager {
                 FileOutputStream out = null;
                 HttpURLConnection conn = null;
                 try {
-                    url = new URL(MyData.getUrlGengxin());
+                    url = new URL(MyData.getUrlXiazai());
+                    Log.e("url",url+"");
                     conn = (HttpURLConnection) url.openConnection();
                     conn.connect();
                     long fileLength = conn.getContentLength();
                     in = conn.getInputStream();
                     File filePath = new File(FILE_PATH);
                     if (!filePath.exists()) {
-                        try {
-                            //按照指定的路径创建文件夹
-                            filePath.mkdirs();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        //按照指定的路径创建文件夹
+                        filePath.mkdirs();
                     }
                     File file = new File(FILE_NAME);
                     if (file.exists()) {
                         file.delete();
                     }
-                    try {
-                        //在指定的文件夹中创建文件
-                        file.createNewFile();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    //在指定的文件夹中创建文件
+                    file.createNewFile();
 
                     out = new FileOutputStream(new File(FILE_NAME));
                     byte[] buffer = new byte[1024];
@@ -159,6 +157,10 @@ public class UpdateAppManager {
                     out.flush();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    dialog.dismiss();
+                    handler.sendEmptyMessage(UPDATE_ERROR);
+
+
                 } finally {
                     if (out != null) {
                         try {
