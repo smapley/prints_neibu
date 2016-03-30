@@ -109,7 +109,6 @@ public class NumList extends Activity implements View.OnClickListener {
     private TextView keyitem15;
     private boolean hasPoint = false;
 
-    private  TextView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -337,17 +336,6 @@ public class NumList extends Activity implements View.OnClickListener {
         recyclerView = (RecyclerView) findViewById(R.id.numlist_recyclerview);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
-        back=(TextView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottom_item2_ico.setVisibility(View.GONE);
-                keybord.setVisibility(View.GONE);
-                if (bottom_item2.getText().toString().equals("")) {
-                    bottom_item2.setText("元宝");
-                }
-            }
-        });
 
 
         keyitem1 = (TextView) findViewById(R.id.key_item1);
@@ -389,6 +377,18 @@ public class NumList extends Activity implements View.OnClickListener {
         bottom_item2_ico = (TextView) findViewById(R.id.table_item1_clo);
         bottom_item3 = (TextView) findViewById(R.id.chose_bottom_item3);
         keybord = findViewById(R.id.print_keybord);
+
+
+        bottom_item1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottom_item2_ico.setVisibility(View.GONE);
+                keybord.setVisibility(View.GONE);
+                if (bottom_item2.getText().toString().equals("")) {
+                    bottom_item2.setText("元宝");
+                }
+            }
+        });
 
         bottom_item3.setOnClickListener(new View.OnClickListener() {
             @Override
