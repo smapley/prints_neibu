@@ -113,11 +113,8 @@
 
                 <TextView
                     style="@style/data_text1"
-                    android:text="盈亏1" />
+                    android:text="盈亏" />
 
-                <TextView
-                    style="@style/data_text1"
-                    android:text="盈亏2" />
             </LinearLayout>
 
             <TextView
@@ -184,11 +181,8 @@
 
                 <TextView
                     style="@style/data_text1"
-                    android:text="金额1" />
+                    android:text="金额" />
 
-                <TextView
-                    style="@style/data_text1"
-                    android:text="金额2" />
 
                 <TextView
                     style="@style/data_text1"

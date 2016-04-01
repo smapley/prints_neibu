@@ -58,7 +58,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
     private TextView item2;
     private TextView item3;
     private TextView item4;
-    private TextView item5;
 
     private TextView edu;
 
@@ -127,7 +126,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
         item2 = (TextView) view.findViewById(R.id.data_tv_item2);
         item3 = (TextView) view.findViewById(R.id.data_tv_item3);
         item4 = (TextView) view.findViewById(R.id.data_tv_item4);
-        item5 = (TextView) view.findViewById(R.id.data_tv_item5);
 
     }
 
@@ -176,7 +174,6 @@ public class Data extends Fragment implements OnClickListener ,View.OnFocusChang
                         item2.setText(result1.get("shui").toString());
                         item3.setText(result1.get("jiang").toString());
                         item4.setText(result1.get("yk").toString());
-                        item5.setText(result1.get("yk2").toString());
                         tv_title2.setText(result1.get("murl").toString());
                         Map<String, List<String>> result = JSON.parseObject(result1.get("new").toString(), new TypeReference<Map<String, List<String>>>() {
                         });

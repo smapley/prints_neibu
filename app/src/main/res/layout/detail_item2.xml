@@ -20,9 +20,6 @@
             android:id="@+id/detail_item_gold"
             style="@style/data_text" />
 
-        <TextView
-            android:id="@+id/detail_item_pei"
-            style="@style/data_text" />
 
         <TextView
             android:id="@+id/detail_item_zt"

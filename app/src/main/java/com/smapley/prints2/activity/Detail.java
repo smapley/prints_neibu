@@ -470,8 +470,8 @@ public class Detail extends Activity {
                         });
                         if (list3 != null) {
                             adapter3 = new SimpleAdapter(Detail.this, list3, R.layout.detail_zhangdan_item
-                                    , new String[]{"qishu", "zjine", "zhuishui", "zzhongjiang", "yingkui1", "yingkui2"}
-                                    , new int[]{R.id.zhangdan_tv_item0, R.id.zhangdan_tv_item1, R.id.zhangdan_tv_item2, R.id.zhangdan_tv_item3, R.id.zhangdan_tv_item4, R.id.zhangdan_tv_item5});
+                                    , new String[]{"qishu", "zjine", "zhuishui", "zzhongjiang", "yingkui1"}
+                                    , new int[]{R.id.zhangdan_tv_item0, R.id.zhangdan_tv_item1, R.id.zhangdan_tv_item2, R.id.zhangdan_tv_item3, R.id.zhangdan_tv_item4});
                             listView3.setAdapter(adapter3);
                         }
                         break;

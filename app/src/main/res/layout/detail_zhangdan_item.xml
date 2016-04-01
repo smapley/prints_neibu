@@ -40,9 +40,6 @@
             android:id="@+id/zhangdan_tv_item4"
             style="@style/zhangdan_text" />
 
-        <TextView
-            android:id="@+id/zhangdan_tv_item5"
-            style="@style/zhangdan_text" />
     </LinearLayout>
 
     <TextView

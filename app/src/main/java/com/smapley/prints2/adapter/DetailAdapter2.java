@@ -54,7 +54,6 @@ public class DetailAdapter2 extends BaseAdapter {
             viewHolder.layout=(LinearLayout)convertView.findViewById(R.id.layout);
             viewHolder.num = (TextView) convertView.findViewById(R.id.detail_item_num);
             viewHolder.gold = (TextView) convertView.findViewById(R.id.detail_item_gold);
-            viewHolder.pei = (TextView) convertView.findViewById(R.id.detail_item_pei);
             viewHolder.zt = (TextView) convertView.findViewById(R.id.detail_item_zt);
             viewHolder.allid=(TextView)convertView.findViewById(R.id.detail_item_allid);
             convertView.setTag(viewHolder);
@@ -72,7 +71,6 @@ public class DetailAdapter2 extends BaseAdapter {
         }
         viewHolder.num.setText(map.get("number"));
         viewHolder.gold.setText(map.get("gold"));
-        viewHolder.pei.setText(map.get("cgold"));
         viewHolder.zt.setText(map.get("pei"));
         viewHolder.allid.setText("编号："+map.get("allid"));
 
@@ -83,7 +81,6 @@ public class DetailAdapter2 extends BaseAdapter {
         LinearLayout layout;
         TextView num;
         TextView gold;
-        TextView pei;
         TextView zt;
         TextView allid;
     }

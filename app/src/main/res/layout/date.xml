@@ -46,11 +46,8 @@
 
                 <TextView
                     style="@style/data_text"
-                    android:text="盈亏1" />
+                    android:text="盈亏" />
 
-                <TextView
-                    style="@style/data_text"
-                    android:text="盈亏2" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,12 +82,6 @@
                     android:textColor="@color/red"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/data_tv_item5"
-                    style="@style/data_text"
-                    android:padding="0dp"
-                    android:textColor="@color/red"
-                    android:textSize="15sp" />
             </LinearLayout>
 
             <TextView
