@@ -576,6 +576,7 @@ public class Print extends Fragment implements View.OnClickListener {
 
                         }
                         if (Integer.parseInt(map.get("count").toString()) > 0) {
+                            tv_title2.setText((Integer.parseInt(tv_title2.getText().toString())-Integer.parseInt(map.get("allgold").toString()))+"");
                             List<Map> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map>>() {
                             });
                             for (int i = 0; i < list.size(); i++) {
