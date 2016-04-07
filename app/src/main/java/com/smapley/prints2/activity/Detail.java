@@ -99,7 +99,6 @@ public class Detail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
 
-        qishu = getIntent().getStringExtra("qishu");
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -483,7 +482,7 @@ public class Detail extends Activity {
                         map = JSON.parseObject(msg.obj.toString(), new TypeReference<Map>() {
                         });
                         if (Integer.parseInt(map.get("count").toString()) > 0) {
-
+                            qishu = map.get("qishu").toString();
                             mhandler.obtainMessage(PRINT).sendToTarget();
 
                         } else {

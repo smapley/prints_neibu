@@ -280,6 +280,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    private String qishu="";
     public Handler mhandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -324,7 +325,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         map = JSON.parseObject(msg.obj.toString(), new TypeReference<Map>() {
                         });
                         if (Integer.parseInt(map.get("count").toString()) > 0) {
-
+                            qishu = map.get("qishu").toString();
                             mhandler.obtainMessage(PRINT).sendToTarget();
 
                         } else {
@@ -343,7 +344,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         String allid = "编号：" + allidString;
                         String riqi = "日期：" + map.get("riqi").toString();
                         String name = "会员：" + map.get("ming").toString();
-                        String qihao = "第" + print.qishu + "期，3天内有效！！";
+                        String qihao = "第" + qishu + "期，3天内有效！！";
                         String allnum = " 笔数 " + map.get("count") + "  总金额 " + map.get("allgold") + "元";
                         String lin = " ";
                         String lin2 = "————————————————————————————————";

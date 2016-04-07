@@ -10,25 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1af64a9-40cc-4298-9a4b-81227b607eee" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\appcompat_v7_23_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\design_23_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\fastjson_1_1_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\fastjson_1_1_22_sources.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\javabase64_1_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\jsoup_1_8_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\printerlibs.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\recyclerview_v7_23_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\support_annotations_23_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\support_v4_23_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\.idea\libraries\xutils_3_3_22.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workSpace\prints_neibu\app\neibu.apk" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -60,57 +45,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Print.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="578" column="0" selection-start-line="578" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
-              <folding />
+              <caret line="327" column="64" selection-start-line="327" selection-start-column="64" selection-end-line="327" selection-end-column="64" />
+              <folding>
+                <element signature="e#8805#18286#0" expanded="true" />
+                <element signature="e#18285#18286#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="print.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/print.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Detail.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Detail.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="346" column="21" selection-start-line="340" selection-start-column="19" selection-end-line="346" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="29" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.5242881">
+              <caret line="484" column="64" selection-start-line="484" selection-start-column="64" selection-end-line="484" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -1766,12 +1718,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/date.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/detail_zhangdan_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/detail_item2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/adapter/DetailAdapter2.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/print.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" />
       </list>
     </option>
   </component>
@@ -1814,6 +1767,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prints_neibu" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -2077,18 +2040,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prints_neibu" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2316,7 +2269,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459521634610</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="更新首页已用">
+      <created>1459949171256</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1459949171256</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2331,8 +2290,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258786" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4888179" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4888179" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2370,21 +2329,14 @@
     <MESSAGE value="修复更新" />
     <MESSAGE value="修复快选" />
     <MESSAGE value="资料里和账单里盈亏2都去掉，盈亏1改为盈亏即可。明细里的中奖页面，也只留1个金额即可。&#10;快打顶部的账号往左边移一些，金额调到中间一点" />
-    <option name="LAST_COMMIT_MESSAGE" value="资料里和账单里盈亏2都去掉，盈亏1改为盈亏即可。明细里的中奖页面，也只留1个金额即可。&#10;快打顶部的账号往左边移一些，金额调到中间一点" />
+    <MESSAGE value="更新首页已用" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新首页已用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2758,7 +2710,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.4638448">
           <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
           <folding />
         </state>
@@ -2772,25 +2724,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="346" column="21" selection-start-line="340" selection-start-column="19" selection-end-line="346" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/SDK/sources/android-23/android/content/res/Resources.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03436426">
           <caret line="334" column="0" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46063653">
+          <caret line="538" column="0" selection-start-line="538" selection-start-column="0" selection-end-line="538" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="578" column="0" selection-start-line="578" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
+          <caret line="327" column="64" selection-start-line="327" selection-start-column="64" selection-end-line="327" selection-end-column="64" />
+          <folding>
+            <element signature="e#8805#18286#0" expanded="true" />
+            <element signature="e#18285#18286#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5242881">
+          <caret line="484" column="64" selection-start-line="484" selection-start-column="64" selection-end-line="484" selection-end-column="64" />
           <folding />
         </state>
       </provider>

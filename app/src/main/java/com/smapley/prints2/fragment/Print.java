@@ -99,7 +99,6 @@ public class Print extends Fragment implements View.OnClickListener {
 
     private String title = "";
     private String yyed = "";
-    public String qishu = "";
 
     private boolean hasPoint = false;
 
@@ -207,9 +206,7 @@ public class Print extends Fragment implements View.OnClickListener {
         tv_title1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Detail.class);
-                intent.putExtra("qishu", qishu);
-                startActivity(intent);
+                startActivity( new Intent(getActivity(), Detail.class));
             }
         });
         tv_title3.setOnClickListener(new View.OnClickListener() {
@@ -539,7 +536,6 @@ public class Print extends Fragment implements View.OnClickListener {
 
                         }
                         if (Integer.parseInt(map1.get("count").toString()) > 0) {
-                            qishu = map1.get("qishu").toString();
                             yyed = map1.get("yyed1").toString();
                             tv_title2.setText(title + yyed);
                             List<Map<String, String>> list = JSON.parseObject(map1.get("result").toString(), new TypeReference<List<Map<String, String>>>() {
@@ -557,7 +553,6 @@ public class Print extends Fragment implements View.OnClickListener {
                             adapter.notifyDataSetChanged();
                             yyed = map1.get("yyed1").toString();
                             tv_title2.setText(title + yyed);
-                            qishu = map1.get("qishu").toString();
                         }
 
 
