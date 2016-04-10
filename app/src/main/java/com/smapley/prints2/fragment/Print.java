@@ -36,6 +36,7 @@ import com.smapley.prints2.print.WorkService;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +47,8 @@ import java.util.Map;
  */
 public class Print extends Fragment implements View.OnClickListener {
 
+    private DecimalFormat df = new DecimalFormat("######0.0");
+    private DecimalFormat dfs = new DecimalFormat("######0");
     private static final int DELECTS = 2;
     private static final int ERROR = 3;
     private static final int CLEARN = 4;
@@ -570,9 +573,38 @@ public class Print extends Fragment implements View.OnClickListener {
                         } catch (Exception e) {
 
                         }
+
+                        try {
+                            List<Map<String, String>> list1 = JSON.parseObject(map.get("disresult").toString(), new TypeReference<List<Map<String, String>>>() {
+                            });
+                            String result = "";
+                            for (int i = 0; i < list1.size(); i++) {
+                                result = result + list1.get(i).get("number").toString() + "\n";
+                            }
+                            if (result != null && !result.equals("")) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setTitle("提示：").setMessage(result)
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        }).create().show();
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
                         if (Integer.parseInt(map.get("count").toString()) > 0) {
-                            tv_title2.setText((Integer.parseInt(tv_title2.getText().toString())-Integer.parseInt(map.get("allgold").toString()))+"");
-                            List<Map> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map>>() {
+                            try {
+                                float total =Float.parseFloat(tv_title2.getText().toString()) - Float.parseFloat(map.get("allgold").toString());
+                                if (total % 1 == 0)
+                                    tv_title2.setText( dfs.format(total));
+                                else
+                                    tv_title2.setText( df.format(total));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            } List<Map> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map>>() {
                             });
                             for (int i = 0; i < list.size(); i++) {
                                 Map resultmap = list.get(i);
@@ -593,22 +625,6 @@ public class Print extends Fragment implements View.OnClickListener {
                             listView.smoothScrollToPosition(adapter.getCount() - 1);
                         }
 
-                        List<Map<String, String>> list1 = JSON.parseObject(map.get("disresult").toString(), new TypeReference<List<Map<String, String>>>() {
-                        });
-                        String result = "";
-                        for (int i = 0; i < list1.size(); i++) {
-                            result = result + list1.get(i).get("number").toString() + "\n";
-                        }
-                        if (result != null && !result.equals("")) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setTitle("提示：").setMessage(result)
-                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    }).create().show();
-                        }
 
 
 

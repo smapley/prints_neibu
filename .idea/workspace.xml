@@ -11,10 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b1af64a9-40cc-4298-9a4b-81227b607eee" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prints_neibu.iws" />
@@ -50,20 +51,40 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="327" column="64" selection-start-line="327" selection-start-column="64" selection-end-line="327" selection-end-column="64" />
-              <folding>
-                <element signature="e#8805#18286#0" expanded="true" />
-                <element signature="e#18285#18286#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Detail.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Detail.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5242881">
-              <caret line="484" column="64" selection-start-line="484" selection-start-column="64" selection-end-line="484" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="485" column="73" selection-start-line="485" selection-start-column="73" selection-end-line="485" selection-end-column="73" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Print.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.65292096">
+              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+              <folding>
+                <element signature="e#4567#4593#0" expanded="true" />
+                <element signature="e#6658#6684#0" expanded="true" />
+                <element signature="e#19812#28544#0" expanded="true" />
+                <element signature="e#24089#24437#0" expanded="true" />
+                <element signature="e#24436#24437#0" expanded="true" />
+                <element signature="e#26757#26772#0" expanded="true" />
+                <element signature="e#27786#27801#0" expanded="true" />
+                <element signature="e#28543#28544#0" expanded="true" />
+                <element signature="e#29206#29221#0" expanded="true" />
+                <element signature="e#29313#29328#0" expanded="true" />
+                <element signature="e#29714#29729#0" expanded="true" />
+                <element signature="e#29821#29836#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1722,9 +1743,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/detail_item2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/adapter/DetailAdapter2.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/print.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java" />
       </list>
     </option>
   </component>
@@ -1767,17 +1788,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prints_neibu" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2040,8 +2051,18 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prints_neibu" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2066,7 +2087,7 @@
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
     <property name="FullScreen" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="172.23.169.2:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="172.19.21.3:5555" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23_x86" />
   </component>
   <component name="RecentsManager">
@@ -2275,7 +2296,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459949171256</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="修复打印期号">
+      <created>1460034051248</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1460034051248</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2290,7 +2317,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258786" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4888179" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4888179" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2330,7 +2357,8 @@
     <MESSAGE value="修复快选" />
     <MESSAGE value="资料里和账单里盈亏2都去掉，盈亏1改为盈亏即可。明细里的中奖页面，也只留1个金额即可。&#10;快打顶部的账号往左边移一些，金额调到中间一点" />
     <MESSAGE value="更新首页已用" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新首页已用" />
+    <MESSAGE value="修复打印期号" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复打印期号" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2338,14 +2366,14 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
@@ -2360,39 +2388,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="111" column="49" selection-start-line="111" selection-start-column="49" selection-end-line="111" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/print.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="111" column="49" selection-start-line="111" selection-start-column="49" selection-end-line="111" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/print.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/util/UpdateAppManager.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -2416,21 +2470,34 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_numlist.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="673" column="13" selection-start-line="673" selection-start-column="13" selection-end-line="673" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2463,21 +2530,34 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_numlist.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="673" column="13" selection-start-line="673" selection-start-column="13" selection-end-line="673" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2506,7 +2586,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="673" column="13" selection-start-line="673" selection-start-column="13" selection-end-line="673" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2528,7 +2621,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="673" column="13" selection-start-line="673" selection-start-column="13" selection-end-line="673" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2550,7 +2656,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="673" column="13" selection-start-line="673" selection-start-column="13" selection-end-line="673" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2572,7 +2691,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="673" column="13" selection-start-line="673" selection-start-column="13" selection-end-line="673" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2584,14 +2716,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/progressbar.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Set.java">
@@ -2637,25 +2769,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_numlist.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/date.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/date.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Data.java">
@@ -2666,25 +2798,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail_zhangdan_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45225224">
           <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail_item2.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail_item2.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34234235">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/adapter/DetailAdapter2.java">
@@ -2695,25 +2827,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/print.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4638448">
           <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
@@ -2732,30 +2864,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46063653">
-          <caret line="538" column="0" selection-start-line="538" selection-start-column="0" selection-end-line="538" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="327" column="64" selection-start-line="327" selection-start-column="64" selection-end-line="327" selection-end-column="64" />
-          <folding>
-            <element signature="e#8805#18286#0" expanded="true" />
-            <element signature="e#18285#18286#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/activity/Detail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5242881">
-          <caret line="484" column="64" selection-start-line="484" selection-start-column="64" selection-end-line="484" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="485" column="73" selection-start-line="485" selection-start-column="73" selection-end-line="485" selection-end-column="73" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/smapley/prints2/fragment/Print.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65292096">
+          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+          <folding>
+            <element signature="e#4567#4593#0" expanded="true" />
+            <element signature="e#6658#6684#0" expanded="true" />
+            <element signature="e#19812#28544#0" expanded="true" />
+            <element signature="e#24089#24437#0" expanded="true" />
+            <element signature="e#24436#24437#0" expanded="true" />
+            <element signature="e#26757#26772#0" expanded="true" />
+            <element signature="e#27786#27801#0" expanded="true" />
+            <element signature="e#28543#28544#0" expanded="true" />
+            <element signature="e#29206#29221#0" expanded="true" />
+            <element signature="e#29313#29328#0" expanded="true" />
+            <element signature="e#29714#29729#0" expanded="true" />
+            <element signature="e#29821#29836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
