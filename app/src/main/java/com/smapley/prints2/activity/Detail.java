@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.CheckBox;
@@ -60,9 +61,10 @@ public class Detail extends Activity {
     private final int UPDATA = 4;
 
     private static List<Map<String, String>> list1;
-    private List<Map<String, String>> list1_now;
+    private static List<Map<String, String>> list1_now = new ArrayList<>();
     private List<Map<String, String>> list2;
-    private List<Map<String, String>> list2_now;
+    private List<Map<String, String>> list2_now = new ArrayList<>();
+
 
     private TextView item1;
     private TextView item2;
@@ -85,20 +87,18 @@ public class Detail extends Activity {
     private ListView listView3;
     private SimpleAdapter adapter3;
 
-    private String qishu;
+    private String qishu = "";
 
     private static CheckBox checkBox;
     private LinearLayout lin2;
     private LinearLayout lin2s;
 
-    public static List<Map> removeList = new ArrayList<>();
     private TextView delect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
-
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -141,29 +141,27 @@ public class Detail extends Activity {
 
     public static void check(boolean b) {
         if (b) {
-            removeList.clear();
-            removeList.addAll(list1);
+            for (Map map : list1_now) {
+                if (!map.get("zt").equals("已退码")) {
+                    map.put("check", "1");
+                }
+            }
         } else {
-            if (removeList.size() == list1.size())
-                removeList.clear();
+            for (Map map : list1_now) {
+                map.put("check", "0");
+            }
         }
     }
 
-    public static void check(Map map, boolean b) {
-        if (b) {
-            removeList.remove(map);
-            removeList.add(map);
-        } else {
-            removeList.remove(map);
-            checkBox.setChecked(false);
-        }
-    }
 
     private void initView() {
 
+        adapter1=new DetailAdapter(this,list1_now);
+        adapter2=new DetailAdapter2(this,list2_now);
+
         checkBox = (CheckBox) findViewById(R.id.details_check);
-        lin2=(LinearLayout)findViewById(R.id.lin2);
-        lin2s=(LinearLayout)findViewById(R.id.lin2s);
+        lin2 = (LinearLayout) findViewById(R.id.lin2);
+        lin2s = (LinearLayout) findViewById(R.id.lin2s);
         delect = (TextView) findViewById(R.id.detail_delect);
 
         delect.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +180,11 @@ public class Detail extends Activity {
 
                                 HashMap map = new HashMap();
                                 List<Map> datalist = new ArrayList<Map>();
-                                datalist.addAll(removeList);
+                                for (Map map1 : list1_now) {
+                                    if (!map1.get("zt").equals("已退码") && map1.get("check").equals("1")) {
+                                        datalist.add(map1);
+                                    }
+                                }
                                 if (datalist.isEmpty()) {
                                     mhandler.obtainMessage(ERROR).sendToTarget();
                                 } else {
@@ -229,7 +231,10 @@ public class Detail extends Activity {
         });
 
         listView3 = (ListView) findViewById(R.id.detail_list3);
-
+        adapter3 = new SimpleAdapter(Detail.this, list3, R.layout.detail_zhangdan_item
+                , new String[]{"qishu", "zjine", "zhuishui", "zzhongjiang", "yingkui1"}
+                , new int[]{R.id.zhangdan_tv_item0, R.id.zhangdan_tv_item1, R.id.zhangdan_tv_item2, R.id.zhangdan_tv_item3, R.id.zhangdan_tv_item4});
+        listView3.setAdapter(adapter3);
 
         listView = (SwipeMenuListView) findViewById(R.id.detail_list);
         listView.setDivider(null);
@@ -274,7 +279,7 @@ public class Detail extends Activity {
                                         @Override
                                         public void run() {
                                             HashMap map = new HashMap();
-                                            map.put("tuima", id+","+biaoshi);
+                                            map.put("tuima", id + "," + biaoshi);
                                             map.put("user1", MyData.UserName);
                                             map.put("mi", MyData.PassWord);
                                             mhandler.obtainMessage(DELECTS, HttpUtils.updata(map, MyData.getUrlTuima())).sendToTarget();
@@ -305,28 +310,34 @@ public class Detail extends Activity {
         page_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkBox.setChecked(true);
+                checkBox.setChecked(false);
                 if (now_item == 1) {
-                    if (page_num1 * 100 < list1.size()) {
-                        if (page_num1 * 100 + 100 < list1.size()) {
-                            list1_now = list1.subList(page_num1 * 100, page_num1 * 100 + 100);
+                    if (page_num1 * PageSize < list1.size()) {
+                        if (page_num1 * PageSize + PageSize < list1.size()) {
+                            list1_now.clear();
+                            list1_now.addAll(list1.subList(page_num1 * PageSize, page_num1 * PageSize + PageSize));
                         } else {
-                            list1_now = list1.subList(page_num1 * 100, list1.size());
+                            list1_now.clear();
+                            list1_now.addAll(list1.subList(page_num1 * PageSize, list1.size()));
                         }
                         page_num1++;
                         page_num.setText(page_num1 + "");
-                        adapter1 = new DetailAdapter(Detail.this, list1_now);
+                        adapter1.notifyDataSetChanged();
                         listView.setAdapter(adapter1);
                     }
                 } else if (now_item == 2) {
-                    if (page_num2 * 100 < list2.size()) {
-                        if (page_num2 * 100 + 100 < list2.size()) {
-                            list2_now = list2.subList(page_num2 * 100, page_num2 * 100 + 100);
+                    if (page_num2 * PageSize < list2.size()) {
+                        if (page_num2 * PageSize + PageSize < list2.size()) {
+                            list2_now.clear();
+                            list2_now.addAll(list2.subList(page_num2 * PageSize, page_num2 * PageSize + PageSize));
                         } else {
-                            list2_now = list2.subList(page_num2 * 100, list2.size());
+                            list2_now.clear();
+                            list2_now.addAll(list2.subList(page_num2 * PageSize, list2.size()));
                         }
                         page_num2++;
                         page_num.setText(page_num2 + "");
-                        adapter2 = new DetailAdapter2(Detail.this, list2_now);
+                        adapter2.notifyDataSetChanged();
                         listView.setAdapter(adapter2);
                     }
                 }
@@ -336,20 +347,24 @@ public class Detail extends Activity {
         page_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkBox.setChecked(true);
+                checkBox.setChecked(false);
                 if (now_item == 1) {
                     if (page_num1 > 1) {
                         page_num1--;
-                        list1_now = list1.subList(page_num1 * 100 - 100, page_num1 * 100);
+                        list1_now.clear();
+                        list1_now.addAll(list1.subList(page_num1 * PageSize - PageSize, page_num1 * PageSize));
                         page_num.setText(page_num1 + "");
-                        adapter1 = new DetailAdapter(Detail.this, list1_now);
+                        adapter1.notifyDataSetChanged();
                         listView.setAdapter(adapter1);
                     }
                 } else if (now_item == 2) {
                     if (page_num2 > 1) {
                         page_num2--;
-                        list2_now = list2.subList(page_num2 * 100 - 100, page_num2 * 100);
+                        list2_now.clear();
+                        list2_now.addAll(list2.subList(page_num2 * PageSize - PageSize, page_num2 * PageSize));
                         page_num.setText(page_num2 + "");
-                        adapter2 = new DetailAdapter2(Detail.this, list2_now);
+                        adapter2.notifyDataSetChanged();
                         listView.setAdapter(adapter2);
                     }
                 }
@@ -419,6 +434,8 @@ public class Detail extends Activity {
 
     }
 
+    private int PageSize = 40;
+    private List<Map<String, Object>> list3 = new ArrayList<>();
     private Handler mhandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -429,6 +446,7 @@ public class Detail extends Activity {
                         list1 = JSON.parseObject(msg.obj.toString(), new TypeReference<List<Map<String, String>>>() {
                         });
                         for (int i = 0; i < list1.size(); i++) {
+                            list1.get(i).put("check", "0");
                             switch (Integer.parseInt(list1.get(i).get("zt").toString())) {
                                 case 0:
                                     list1.get(i).put("zt", "未打印");
@@ -442,12 +460,14 @@ public class Detail extends Activity {
                                     break;
                             }
                         }
-                        if (list1.size() > 100) {
-                            list1_now = list1.subList(0, 100);
+                        if (list1.size() > PageSize) {
+                            list1_now.clear();
+                            list1_now.addAll(list1.subList(0, PageSize));
                         } else {
-                            list1_now = list1;
+                            list1_now.clear();
+                            list1_now.addAll(list1);
                         }
-                        adapter1 = new DetailAdapter(Detail.this, list1_now);
+                        adapter1.notifyDataSetChanged();
                         listView.setAdapter(adapter1);
 
                         break;
@@ -455,24 +475,24 @@ public class Detail extends Activity {
                         list2 = JSON.parseObject(msg.obj.toString(), new TypeReference<List<Map<String, String>>>() {
                         });
 
-                        if (list2.size() > 100) {
-                            list2_now = list2.subList(0, 100);
+                        if (list2.size() > PageSize) {
+                            list2_now.clear();
+                            list2_now.addAll(list2.subList(0, PageSize));
                         } else {
-                            list2_now = list2;
+                            list2_now.clear();
+                            list2_now.addAll(list2);
                         }
-                        adapter2 = new DetailAdapter2(Detail.this, list2_now);
+                        adapter2.notifyDataSetChanged();
 
                         break;
 
                     case GETDATA3:
-                        List<Map<String, Object>> list3 = JSON.parseObject(msg.obj.toString(), new TypeReference<List<Map<String, Object>>>() {
-                        });
-                        if (list3 != null) {
-                            adapter3 = new SimpleAdapter(Detail.this, list3, R.layout.detail_zhangdan_item
-                                    , new String[]{"qishu", "zjine", "zhuishui", "zzhongjiang", "yingkui1"}
-                                    , new int[]{R.id.zhangdan_tv_item0, R.id.zhangdan_tv_item1, R.id.zhangdan_tv_item2, R.id.zhangdan_tv_item3, R.id.zhangdan_tv_item4});
-                            listView3.setAdapter(adapter3);
-                        }
+                        list3.clear();
+                        list3.addAll(JSON.parseObject(msg.obj.toString(), new TypeReference<List<Map<String, Object>>>() {
+                        }));
+                        Log.e("result", msg.obj.toString());
+
+                        adapter3.notifyDataSetChanged();
                         break;
 
 
@@ -633,8 +653,8 @@ public class Detail extends Activity {
                         }
                         break;
                     case DELECTS:
+                        checkBox.setChecked(true);
                         checkBox.setChecked(false);
-                        removeList.clear();
                         String result2 = JSON.parseObject(msg.obj.toString(), new TypeReference<String>() {
                         });
                         boolean isSucc = false;
@@ -654,8 +674,8 @@ public class Detail extends Activity {
 
                         break;
                     case ERROR:
+                        checkBox.setChecked(true);
                         checkBox.setChecked(false);
-                        removeList.clear();
                         adapter1.notifyDataSetChanged();
                         Toast.makeText(Detail.this, "没有码可以退！", Toast.LENGTH_SHORT).show();
                         break;

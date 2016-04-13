@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.smapley.prints2.R;
-import com.smapley.prints2.activity.Detail;
 
 import java.util.List;
 import java.util.Map;
@@ -72,32 +70,30 @@ public class DetailAdapter extends BaseAdapter {
         }catch (Exception e){
             e.printStackTrace();
         }
-        boolean check=false;
-        if(!Detail.removeList.isEmpty()){
-            for(Map map1:Detail.removeList){
-                if(map.equals(map1)){
-                    check=true;
-                }
-            }
-        }
-        viewHolder.num.setChecked(check);
-        viewHolder.num.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Detail.check(map,b);
-                notifyDataSetChanged();
-            }
-        });
+
+        viewHolder.num.setChecked(map.get("check").equals("1") ? true : false);
+
         viewHolder.num.setText(map.get("number"));
         viewHolder.gold.setText(map.get("gold"));
         viewHolder.pei.setText(map.get("pei"));
         viewHolder.zt.setText(map.get("zt"));
         if (map.get("zt").equals("已退码")) {
+            viewHolder.num.setChecked(false);
+            map.put("check", "0");
+            viewHolder.num.setEnabled(false);
             viewHolder.num.setTextColor(context.getResources().getColor(R.color.red));
             viewHolder.gold.setTextColor(context.getResources().getColor(R.color.red));
             viewHolder.pei.setTextColor(context.getResources().getColor(R.color.red));
             viewHolder.zt.setTextColor(context.getResources().getColor(R.color.red));
         } else {
+            viewHolder.num.setEnabled(true);
+            viewHolder.num.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    map.put("check",((CheckBox)v).isChecked()?"1": "0");
+                }
+            });
+
             viewHolder.num.setTextColor(context.getResources().getColor(R.color.black));
             viewHolder.gold.setTextColor(context.getResources().getColor(R.color.black));
             viewHolder.pei.setTextColor(context.getResources().getColor(R.color.black));

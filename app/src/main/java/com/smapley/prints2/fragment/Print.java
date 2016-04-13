@@ -209,7 +209,7 @@ public class Print extends Fragment implements View.OnClickListener {
         tv_title1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity( new Intent(getActivity(), Detail.class));
+                startActivity(new Intent(getActivity(), Detail.class));
             }
         });
         tv_title3.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +278,7 @@ public class Print extends Fragment implements View.OnClickListener {
         keyitem14 = (TextView) view.findViewById(R.id.key_item14);
         keyitem15 = (TextView) view.findViewById(R.id.key_item15);
         tag = (TextView) view.findViewById(R.id.text_tag);
-        xiane=(TextView)view.findViewById(R.id.text_xiane);
+        xiane = (TextView) view.findViewById(R.id.text_xiane);
 
         keyitem1.setOnClickListener(this);
         keyitem2.setOnClickListener(this);
@@ -332,7 +332,7 @@ public class Print extends Fragment implements View.OnClickListener {
                                 @Override
                                 public void run() {
                                     HashMap map = new HashMap();
-                                    map.put("tuima", item.get("id").toString()+","+item.get("biaoshi").toString());
+                                    map.put("tuima", item.get("id").toString() + "," + item.get("biaoshi").toString());
                                     map.put("user1", MyData.UserName);
                                     map.put("mi", MyData.PassWord);
                                     mhandler.obtainMessage(DELECTS, HttpUtils.updata(map, MyData.getUrlTuima())).sendToTarget();
@@ -525,7 +525,7 @@ public class Print extends Fragment implements View.OnClickListener {
                                 getData();
                                 return;
                             }
-                        }catch(Exception  e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                         try {
@@ -539,7 +539,8 @@ public class Print extends Fragment implements View.OnClickListener {
 
                         }
                         if (Integer.parseInt(map1.get("count").toString()) > 0) {
-                            yyed = map1.get("yyed1").toString();
+                            if (map1.get("yyed1") != null)
+                                yyed = map1.get("yyed1").toString();
                             tv_title2.setText(title + yyed);
                             List<Map<String, String>> list = JSON.parseObject(map1.get("result").toString(), new TypeReference<List<Map<String, String>>>() {
                             });
@@ -554,7 +555,8 @@ public class Print extends Fragment implements View.OnClickListener {
                             dataList.clear();
                             dataList.add(baseMap);
                             adapter.notifyDataSetChanged();
-                            yyed = map1.get("yyed1").toString();
+                            if (map1.get("yyed1") != null)
+                                yyed = map1.get("yyed1").toString();
                             tv_title2.setText(title + yyed);
                         }
 
@@ -591,20 +593,21 @@ public class Print extends Fragment implements View.OnClickListener {
                                             }
                                         }).create().show();
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
                         if (Integer.parseInt(map.get("count").toString()) > 0) {
                             try {
-                                float total =Float.parseFloat(tv_title2.getText().toString()) - Float.parseFloat(map.get("allgold").toString());
+                                float total = Float.parseFloat(tv_title2.getText().toString()) - Float.parseFloat(map.get("allgold").toString());
                                 if (total % 1 == 0)
-                                    tv_title2.setText( dfs.format(total));
+                                    tv_title2.setText(dfs.format(total));
                                 else
-                                    tv_title2.setText( df.format(total));
+                                    tv_title2.setText(df.format(total));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                            } List<Map> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map>>() {
+                            }
+                            List<Map> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map>>() {
                             });
                             for (int i = 0; i < list.size(); i++) {
                                 Map resultmap = list.get(i);
@@ -612,20 +615,18 @@ public class Print extends Fragment implements View.OnClickListener {
                                 dataMap.put("count", map.get("count").toString());
                                 dataMap.put("allgold", map.get("allgold").toString());
                                 dataMap.put("allid", map.get("allid").toString());
-                                dataMap.put("riqi",map.get("riqi").toString());
+                                dataMap.put("riqi", map.get("riqi").toString());
                                 dataMap.put("number", resultmap.get("number").toString());
                                 dataMap.put("gold", resultmap.get("gold").toString());
                                 dataMap.put("pei", resultmap.get("pei").toString());
                                 dataMap.put("id", resultmap.get("id").toString());
-                                dataMap.put("biaoshi",resultmap.get("biaoshi").toString());
+                                dataMap.put("biaoshi", resultmap.get("biaoshi").toString());
                                 dataMap.put("hotstat", "0");
                                 dataList.add(dataMap);
                             }
                             adapter.notifyDataSetChanged();
                             listView.smoothScrollToPosition(adapter.getCount() - 1);
                         }
-
-
 
 
                         break;
