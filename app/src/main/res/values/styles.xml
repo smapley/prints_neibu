@@ -29,6 +29,16 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="data_text2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
     <style name="data_text1">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -125,5 +135,13 @@
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:textCursorDrawable">@mipmap/cursor</item>
+    </style>
+
+    <style name="date_item_layout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/textview_circle2s</item>
+        <item name="android:layout_margin">3dp</item>
     </style>
 </resources>

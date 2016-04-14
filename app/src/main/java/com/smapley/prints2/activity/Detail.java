@@ -35,6 +35,9 @@ import com.smapley.prints2.print.WorkService;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
 
+import org.xutils.view.annotation.ContentView;
+import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +46,7 @@ import java.util.Map;
 /**
  * Created by hao on 2015/11/8.
  */
+@ContentView(R.layout.detail)
 public class Detail extends Activity {
 
     private static final int PRINT = 5;
@@ -95,11 +99,12 @@ public class Detail extends Activity {
 
     private TextView delect;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
 
+        x.view().inject(this);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_item1);
