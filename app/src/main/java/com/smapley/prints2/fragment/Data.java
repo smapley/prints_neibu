@@ -35,7 +35,7 @@ import java.util.Map;
  * Created by hao on 2015/11/7.
  */
 @ContentView(R.layout.date)
-public class Data extends Fragment{
+public class Data extends Fragment {
 
     @ViewInject(R.id.title_item2)
     private TextView tv_title2;
@@ -116,9 +116,9 @@ public class Data extends Fragment{
     @ViewInject(R.id.print_keybord)
     private View print_keybord;
 
-    private List<TextView> itemList=new ArrayList<>();
-    private List<TextView> itemIcoList=new ArrayList<>();
-    private List<View> itemLayoutList=new ArrayList<>();
+    private List<TextView> itemList = new ArrayList<>();
+    private List<TextView> itemIcoList = new ArrayList<>();
+    private List<View> itemLayoutList = new ArrayList<>();
 
     @ViewInject(R.id.data_tv_item1)
     private TextView item1;
@@ -143,7 +143,7 @@ public class Data extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = x.view().inject(this, inflater, container);
-        dialog=new ProgressDialog(getActivity());
+        dialog = new ProgressDialog(getActivity());
         dialog.setMessage("正在上传信息。。。");
 
         initView(view);
@@ -249,7 +249,7 @@ public class Data extends Fragment{
                         dialog.dismiss();
                         Integer result2 = JSON.parseObject(msg.obj.toString(), new TypeReference<Integer>() {
                         });
-                        if (null!=result2&&result2 >= 0) {
+                        if (null != result2 && result2 >= 0) {
                             getData();
                             Toast.makeText(getActivity(), "保存成功！", Toast.LENGTH_SHORT).show();
                         } else {
@@ -267,8 +267,7 @@ public class Data extends Fragment{
     };
 
 
-
-    @Event({R.id.back,R.id.title_item3, R.id.data_ev_item13_layout, R.id.data_ev_item23_layout, R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout, R.id.data_ev_item63_layout,
+    @Event({R.id.back, R.id.title_item3, R.id.data_ev_item13_layout, R.id.data_ev_item23_layout, R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout, R.id.data_ev_item63_layout,
             R.id.key_item1, R.id.key_item2, R.id.key_item3, R.id.key_item5, R.id.key_item6, R.id.key_item7, R.id.key_item9,
             R.id.key_item10, R.id.key_item11, R.id.key_item8, R.id.key_item12, R.id.key_item13, R.id.key_item15})
     private void onClick(View view) {
@@ -328,24 +327,20 @@ public class Data extends Fragment{
     }
 
     private void editItem(int position) {
-            scrollView.scrollTo(0, 150+50*position);
-            for (int i = 0; i < 6; i++) {
-                if (position == i) {
-                    itemIcoList.get(i).setVisibility(View.VISIBLE);
-                    jin_text = itemList.get(i);
-                    jin_text.setText("");
-                    NowPostion = i;
-                } else {
-                    itemIcoList.get(i).setVisibility(View.GONE);
+        scrollView.scrollTo(0, 150 + 50 * position);
+        for (int i = 0; i < 6; i++) {
+            if (position == i) {
+                itemIcoList.get(i).setVisibility(View.VISIBLE);
+                jin_text = itemList.get(i);
+                jin_text.setText("");
+                NowPostion = i;
+            } else {
+                itemIcoList.get(i).setVisibility(View.GONE);
 
-                }
             }
-            new ThreadSleep().sleep(500, new ThreadSleep.Callback() {
-                @Override
-                public void onCallback(ThreadSleep threadSleep, int number) {
-                    print_keybord.setVisibility(View.VISIBLE);
-                    ((MainActivity) getActivity()).bottom.setVisibility(View.GONE);
-                }
-            });
+        }
+        print_keybord.setVisibility(View.VISIBLE);
+        ((MainActivity) getActivity()).bottom.setVisibility(View.GONE);
+
     }
 }

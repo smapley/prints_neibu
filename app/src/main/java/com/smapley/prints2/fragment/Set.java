@@ -117,15 +117,8 @@ public class Set extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                HashMap map = new HashMap();
-                                map.put("user1",MyData.UserName1);
-                                map.put("user2",MyData.UserName2);
-                                mhandler.obtainMessage(LOGOUT,HttpUtils.updata(map,MyData.getURL_Reg2())).sendToTarget();
-                            }
-                        }).start();
+                                mhandler.obtainMessage(LOGOUT).sendToTarget();
+
 
                     }
                 });
