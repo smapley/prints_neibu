@@ -31,8 +31,6 @@ public class Gaimi extends Activity {
     private EditText newmi1;
     @ViewInject(R.id.newmi2)
     private EditText newmi2;
-    @ViewInject(R.id.newmi3)
-    private EditText newmi3;
     @ViewInject(R.id.ming)
     private EditText ming;
 
@@ -67,7 +65,7 @@ public class Gaimi extends Activity {
     }
 
     public void checkGaimi(View view) {
-        reggaimiService.load(new ReggaimiParams(MyData.UserName, ming.getText().toString(), oldmi.getText().toString(), newmi1.getText().toString(), newmi2.getText().toString(),newmi3.getText().toString()));
-    }
+        reggaimiService.load(new ReggaimiParams(MyData.UserName, ming.getText().toString(), oldmi.getText().toString(), newmi1.getText().toString(), newmi2.getText().toString()));
+}
 
 }
