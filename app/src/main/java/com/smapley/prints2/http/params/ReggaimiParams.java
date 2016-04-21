@@ -11,13 +11,14 @@ import org.xutils.http.RequestParams;
  */
 public class ReggaimiParams extends RequestParams {
 
-    public ReggaimiParams(String user1, String ming,String oldmi,String newmi1,String newmi2) {
+    public ReggaimiParams(String user1, String ming,String oldmi,String newmi1,String newmi2,String murl) {
         super(MyData.getURL_reggaimi());
         addBodyParameter("user1", user1);
         addBodyParameter("ming", ming);
         addBodyParameter("oldmi", oldmi);
         addBodyParameter("newmi1", newmi1);
         addBodyParameter("newmi2", newmi2);
+        addBodyParameter("murl", murl);
         try {
             LogUtil.d(toJSONString());
         }catch (Exception e){
