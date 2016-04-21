@@ -344,7 +344,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         String allid = "编号：" + allidString;
                         String riqi = "日期：" + map.get("riqi").toString();
                         String name = "会员：" + map.get("ming").toString();
-                        String qihao = "第" + qishu + "期，3天内有效！！";
+                        String qihao =  qishu ;
                         String allnum = " 笔数 " + map.get("count") + "  总金额 " + map.get("allgold") + "元";
                         String lin = " ";
                         String lin2 = "————————————————————————————————";

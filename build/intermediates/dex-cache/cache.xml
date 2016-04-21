@@ -2,81 +2,81 @@
 <items version="2" >
 
     <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/libs/printerlibs.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1acf29d11e416be442a15becff4739a93a56bf3a">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/printerlibs-e01f8127a44fdc2caa25ed367cf6fff986692a37.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/exploded-aar/org.xutils/xutils/3.3.22/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57efca11519151f131f4980f939b71793284278f">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/classes-3ef97b82736b81f0836e1d376ed9a421f7288c52.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/classes-ba8fac9c877f0857264f6f453ede8a3b881931ce.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/libs/jsoup-1.8.3.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/jsoup-1.8.3-db5d21d5f605ce69d0837d7d6bcdf1243dec7a28.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/support-annotations-23.1.0-226685376150576e1bd466d2b09b9d33eba245a0.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/libs/javabase64-1.3.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d6c41daabd8f7aebf65893dcbbfc18b5b78ea74">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/javabase64-1.3.1-bcc31f88d897ba5564c20686334c0c47b91cb8e2.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/libs/fastjson-1.1.22.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1744ecd7f8716ac83381f2b8f5bd002365ccdca9">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/fastjson-1.1.22-413470e1fd13e161c1e255b22b69daf6f3a41e25.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/classes-7b295156e30c64a0323bec3675899e5395adcab0.jar" />
-    </item>
-    <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jar="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/classes-ff9262f16f4f7859270653ed200081c7d0bc7545.jar" />
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\classes-41f86c22d874b5103796f6f499913405b15fc511.jar" />
     </item>
     <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jar="D:\WorkSpace\Android\prints_neibu\app\libs\javabase64-1.3.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d6c41daabd8f7aebf65893dcbbfc18b5b78ea74">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\javabase64-1.3.1-38a16c9b5ad28339125c4c7db969380ed909214c.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\classes-86342d9e7edb2cfb2e1132ecef0fb5d93976b906.jar" />
+    </item>
+    <item
+        jar="D:\SDK\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\support-annotations-23.1.0-edac7719713beec49d9aa14e3050935de4afb86b.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\libs\fastjson-1.1.22.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1744ecd7f8716ac83381f2b8f5bd002365ccdca9">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\fastjson-1.1.22-58abff9da41006758144e96134ca106ef273a54e.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\exploded-aar\org.xutils\xutils\3.3.22\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57efca11519151f131f4980f939b71793284278f">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\classes-04bc14c2885135417207df4ab142873c6a85d713.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\classes-f24c9714e0eb49038bda23ab4cdc7005243c0f42.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\libs\jsoup-1.8.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\jsoup-1.8.3-c7bb6d6c56e69c3a8edbcc7f3143159bb5eefbd1.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\libs\printerlibs.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1acf29d11e416be442a15becff4739a93a56bf3a">
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\printerlibs-d735fcec6826ec0e9cdebe29f4772896ec5fd442.jar" />
+    </item>
+    <item
+        jar="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="19026d31f5d3ae868db81319671a642be5fbba08">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/classes-1946d3faa9009e6dac811dc2933146999701aed2.jar" />
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\classes-368928fc62aee1054b13f02a24342a12659cd56f.jar" />
     </item>
     <item
-        jar="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jar="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/smapley/Desktop/WorkSpace/prints_neibu/app/build/intermediates/pre-dexed/release/internal_impl-23.1.0-562f0f9564110aee36a12217acf719011bc50fff.jar" />
+        <dex dex="D:\WorkSpace\Android\prints_neibu\app\build\intermediates\pre-dexed\release\internal_impl-23.1.0-f1d9f1fc8a01e2d96ea5c19df63926cff0d2bdfd.jar" />
     </item>
 
 </items>
