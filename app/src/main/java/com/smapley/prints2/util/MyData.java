@@ -20,6 +20,7 @@ public class MyData {
     private static String URL_INDEX1 = "xiazhuX2.php";
     private static String URL_TUIMA = "tuimaG4.php";
     private static String URL_GETJILU1 = "getJilu1.php";
+    private static String URL_DAYIN = "dayin.php";
     private static String URL_GETJILU2 = "getJilu2.php";
     private static String URL_updateZt1 = "updateZt1.php";
     private static String URL_getSoudj = "getSoudj.php";
@@ -56,6 +57,9 @@ public class MyData {
 
     public static String getUrlGetjilu1() {
         return getBaseUrl() + URL_GETJILU1;
+    }
+    public static String getUrlDayin() {
+        return getBaseUrl() + URL_DAYIN;
     }
 
     public static String getUrlGetjilu2() {

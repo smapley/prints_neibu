@@ -291,9 +291,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 switch (msg.what) {
                     case CANUPDATA:
                         if (print.dataList.size() > 1) {
-                            upData(true, MyData.getUrlGetjilu1());
+                            upData(true, MyData.getUrlDayin());
                         } else {
-                            upData(false, MyData.getUrlGetjilu1());
+                            upData(false, MyData.getUrlDayin());
 
                         }
                         break;
