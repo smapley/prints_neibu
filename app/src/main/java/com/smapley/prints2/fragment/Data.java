@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -19,8 +20,8 @@ import com.smapley.prints2.R;
 import com.smapley.prints2.activity.MainActivity;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
-import com.smapley.prints2.util.ThreadSleep;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -155,6 +156,7 @@ public class Data extends Fragment {
 
         tv_title3.setText("保存");
 
+        itemLayoutList.clear();
         itemLayoutList.add(item13_layout);
         itemLayoutList.add(item23_layout);
         itemLayoutList.add(item33_layout);
@@ -162,6 +164,7 @@ public class Data extends Fragment {
         itemLayoutList.add(item53_layout);
         itemLayoutList.add(item63_layout);
 
+        itemList.clear();
         itemList.add(item13);
         itemList.add(item23);
         itemList.add(item33);
@@ -169,6 +172,7 @@ public class Data extends Fragment {
         itemList.add(item53);
         itemList.add(item63);
 
+        itemIcoList.clear();
         itemIcoList.add(item13_ico);
         itemIcoList.add(item23_ico);
         itemIcoList.add(item33_ico);
@@ -267,9 +271,37 @@ public class Data extends Fragment {
     };
 
 
-    @Event({R.id.back, R.id.title_item3, R.id.data_ev_item13_layout, R.id.data_ev_item23_layout, R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout, R.id.data_ev_item63_layout,
+    @Event(value = { R.id.data_ev_item13_layout, R.id.data_ev_item23_layout,
+            R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout,
+            R.id.data_ev_item63_layout},type = View.OnTouchListener.class)
+    private  boolean onTouch(View v, MotionEvent event) {
+        switch (v.getId()){
+            case R.id.data_ev_item13_layout:
+                editItem(0);
+                break;
+            case R.id.data_ev_item23_layout:
+                editItem(1);
+                break;
+            case R.id.data_ev_item33_layout:
+                editItem(2);
+                break;
+            case R.id.data_ev_item43_layout:
+                editItem(3);
+                break;
+            case R.id.data_ev_item53_layout:
+                editItem(4);
+                break;
+            case R.id.data_ev_item63_layout:
+                editItem(5);
+                break;
+        }
+        return true;
+    }
+
+    @Event(value = {R.id.back, R.id.title_item3, R.id.data_ev_item13_layout, R.id.data_ev_item23_layout, R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout, R.id.data_ev_item63_layout,
             R.id.key_item1, R.id.key_item2, R.id.key_item3, R.id.key_item5, R.id.key_item6, R.id.key_item7, R.id.key_item9,
-            R.id.key_item10, R.id.key_item11, R.id.key_item8, R.id.key_item12, R.id.key_item13, R.id.key_item15})
+            R.id.key_item10, R.id.key_item11, R.id.key_item8, R.id.key_item12, R.id.key_item13, R.id.key_item15},
+    type = View.OnClickListener.class)
     private void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_item3:
@@ -328,7 +360,8 @@ public class Data extends Fragment {
 
     private void editItem(int position) {
         scrollView.scrollTo(0, 150 + 50 * position);
-        for (int i = 0; i < 6; i++) {
+        LogUtil.d("position"+position+"size"+itemIcoList.size());
+        for (int i = 0; i < itemIcoList.size(); i++) {
             if (position == i) {
                 itemIcoList.get(i).setVisibility(View.VISIBLE);
                 jin_text = itemList.get(i);
