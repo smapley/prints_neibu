@@ -84,6 +84,7 @@ public class Print extends Fragment implements View.OnClickListener {
     private TextView keyitem13;
     private TextView keyitem14;
     private TextView keyitem15;
+    private TextView message;
     private TextView tag;
     private TextView xiane;
     private final int UPDATA = -1;
@@ -130,7 +131,7 @@ public class Print extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
         tingYa = (TextView) view.findViewById(R.id.print_tingya);
-
+        message=(TextView)view.findViewById(R.id.message);
         tingYa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -528,6 +529,15 @@ public class Print extends Fragment implements View.OnClickListener {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        message.setVisibility(View.GONE);
+                        try{
+                            if(map1.get("tongzhi")!=null&&!map1.get("tongzhi").toString().equals("")){
+                                message.setVisibility(View.VISIBLE);
+                                message.setText(map1.get("tongzhi").toString());
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         try {
                             List<Map<String, String>> list2 = JSON.parseObject(map1.get("res").toString(), new TypeReference<List<Map<String, String>>>() {
                             });
@@ -575,7 +585,15 @@ public class Print extends Fragment implements View.OnClickListener {
                         } catch (Exception e) {
 
                         }
-
+                        message.setVisibility(View.GONE);
+                        try{
+                            if(map.get("tongzhi")!=null&&!map.get("tongzhi").toString().equals("")){
+                                message.setVisibility(View.VISIBLE);
+                                message.setText(map.get("tongzhi").toString());
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         try {
                             List<Map<String, String>> list1 = JSON.parseObject(map.get("disresult").toString(), new TypeReference<List<Map<String, String>>>() {
                             });

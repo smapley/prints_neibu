@@ -163,7 +163,7 @@
                 <TextView
                     style="@style/data_text1"
                     android:layout_weight="0.8"
-                    android:text="状态" />
+                    android:text="回水" />
             </LinearLayout>
 
             <LinearLayout

@@ -76,7 +76,7 @@ public class DetailAdapter extends BaseAdapter {
         viewHolder.num.setText(map.get("number"));
         viewHolder.gold.setText(map.get("gold"));
         viewHolder.pei.setText(map.get("pei"));
-        viewHolder.zt.setText(map.get("zt"));
+        viewHolder.zt.setText(map.get("shui"));
         if (map.get("zt").equals("已退码")) {
             viewHolder.num.setChecked(false);
             map.put("check", "0");

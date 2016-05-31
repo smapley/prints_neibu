@@ -28,7 +28,6 @@ import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
 import com.smapley.prints2.util.UpdateAppManager;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -139,6 +138,8 @@ public class Set extends Fragment {
                         SharedPreferences.Editor editor = sp_user.edit();
                         editor.putBoolean("login1", false);
                         editor.putBoolean("login2", false);
+                        editor.putString("password1", "");
+                        editor.putString("password2", "");
                         editor.commit();
                         MyData.Login1=false;
                         MyData.Login2=false;
