@@ -140,6 +140,8 @@ public class Set extends Fragment {
                         editor.putBoolean("login2", false);
                         editor.putString("password1", "");
                         editor.putString("password2", "");
+                        editor.putString("username1", "");
+                        editor.putString("username2", "");
                         editor.commit();
                         MyData.Login1=false;
                         MyData.Login2=false;

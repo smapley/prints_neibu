@@ -40,7 +40,7 @@ public class MyData {
 
 
     public static String getBaseUrl() {
-        return "http://" + IP + "/xiong/";
+        return "http://" + IP + "/neibu/";
     }
 
     public static String getUrlXiazai() {
