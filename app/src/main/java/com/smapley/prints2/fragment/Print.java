@@ -16,6 +16,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,9 +57,8 @@ public class Print extends Fragment implements View.OnClickListener {
     private TextView tv_title2;
     private TextView tv_title3;
     private TextView title_user;
-
     private View keybord;
-    private TextView back;
+    private ImageView back;
     private TextView nowText;
     private TextView numText;
     private TextView jineText;
@@ -130,6 +130,7 @@ public class Print extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+
         tingYa = (TextView) view.findViewById(R.id.print_tingya);
         message=(TextView)view.findViewById(R.id.message);
         tingYa.setOnClickListener(new View.OnClickListener() {
@@ -233,11 +234,12 @@ public class Print extends Fragment implements View.OnClickListener {
             }
         });
 
-        back = (TextView) view.findViewById(R.id.back);
+        back = (ImageView) view.findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 keybord.setVisibility(View.GONE);
+                back.setVisibility(View.GONE);
                 ((MainActivity) getActivity()).bottom.setVisibility(View.VISIBLE);
 
             }
@@ -363,6 +365,7 @@ public class Print extends Fragment implements View.OnClickListener {
         nowText = jineText;
         jine = tag;
         keybord.setVisibility(View.VISIBLE);
+        back.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).bottom.setVisibility(View.GONE);
         keybord.setBackgroundResource(R.color.back2);
         numCart.setVisibility(View.GONE);
@@ -376,11 +379,12 @@ public class Print extends Fragment implements View.OnClickListener {
     private void goNumText(String text) {
 
         if (tag.getText().length() != 1)
-            tag.setText("");
+            tag.setText("▼");
         hasPoint = false;
         nowText = numText;
         nowText.setText(text);
         keybord.setVisibility(View.VISIBLE);
+        back.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).bottom.setVisibility(View.GONE);
         keybord.setBackgroundResource(R.color.bac1);
         numCart.setVisibility(View.VISIBLE);
@@ -402,7 +406,7 @@ public class Print extends Fragment implements View.OnClickListener {
                     xian = 1;
                     dao = 0;
                 } else {
-                    tag.setText("");
+                    tag.setText("▼");
                     xian = 0;
                 }
 
@@ -413,7 +417,7 @@ public class Print extends Fragment implements View.OnClickListener {
                     xian = 0;
                     dao = 1;
                 } else {
-                    tag.setText("");
+                    tag.setText("▼");
                     dao = 0;
                 }
                 break;
@@ -436,7 +440,7 @@ public class Print extends Fragment implements View.OnClickListener {
                 goNumText("");
                 xian = 0;
                 dao = 0;
-                tag.setText("");
+                tag.setText("▼");
 
                 break;
 
@@ -655,20 +659,8 @@ public class Print extends Fragment implements View.OnClickListener {
                         removeList.clear();
                         String result2 = JSON.parseObject(msg.obj.toString(), new TypeReference<String>() {
                         });
-                        boolean isSucc = false;
-                        for (int i = 0; i < result2.length(); i++) {
-                            String data = result2.substring(i, i + 1);
-                            if (data.equals("1")) {
-                                isSucc = true;
-                            }
-                        }
-                        if (isSucc) {
-                            Toast.makeText(getActivity(), "退码成功！", Toast.LENGTH_SHORT).show();
-                            getData();
-                        } else {
-                            Toast.makeText(getActivity(), "退码失败！", Toast.LENGTH_SHORT).show();
-
-                        }
+                        Toast.makeText(getActivity(), result2, Toast.LENGTH_SHORT).show();
+                        getData();
 
                         break;
                     case ERROR:

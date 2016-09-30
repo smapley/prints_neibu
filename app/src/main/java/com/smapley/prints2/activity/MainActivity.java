@@ -578,8 +578,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if (resultCode == RESULT_OK) {
             viewPagerGo(0);
             position = 1;
-            String result = data.getStringExtra("data");
-            print.mhandler.obtainMessage(-1, result).sendToTarget();
+            print.getData();
         }
     }
 

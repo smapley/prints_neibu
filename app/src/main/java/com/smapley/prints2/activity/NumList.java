@@ -15,8 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.smapley.prints2.R;
 import com.smapley.prints2.adapter.NumListAdapter;
 import com.smapley.prints2.util.HttpUtils;
@@ -25,7 +23,6 @@ import com.smapley.prints2.util.MyData;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by smapley on 15/11/15.
@@ -337,7 +334,6 @@ public class NumList extends Activity implements View.OnClickListener {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
 
-
         keyitem1 = (TextView) findViewById(R.id.key_item1);
         keyitem2 = (TextView) findViewById(R.id.key_item2);
         keyitem3 = (TextView) findViewById(R.id.key_item3);
@@ -468,16 +464,10 @@ public class NumList extends Activity implements View.OnClickListener {
                 switch (msg.what) {
                     case UPDATA:
                         dialog.dismiss();
-                        Map map = JSON.parseObject(msg.obj.toString(), new TypeReference<Map>() {
-                        });
-                        if (Integer.parseInt(map.get("count").toString()) > 0) {
-                            Intent intent = new Intent();
-                            intent.putExtra("data", msg.obj.toString());
-                            setResult(RESULT_OK, intent);
-                            finish();
-                        } else {
-                            Toast.makeText(NumList.this, "下注失败", Toast.LENGTH_SHORT).show();
-                        }
+
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent);
+                        finish();
 
                         break;
                 }

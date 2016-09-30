@@ -17,8 +17,8 @@ public class MyData {
 
     public static String IP;
 
-    private static String URL_INDEX1 = "xiazhuX2.php";
-    private static String URL_TUIMA = "tuimaG4.php";
+    private static String URL_INDEX1 = "xiazhuKX.php";
+    private static String URL_TUIMA = "tuimaX1.php";
     private static String URL_GETJILU1 = "getJilu1.php";
     private static String URL_DAYIN = "dayin.php";
     private static String URL_GETJILU2 = "getJilu2.php";

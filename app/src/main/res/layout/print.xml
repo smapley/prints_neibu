@@ -5,11 +5,6 @@
     android:background="@color/white">
 
 
-    <TextView
-        android:id="@+id/back"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="200dp" />
 
 
     <LinearLayout
@@ -139,6 +134,15 @@
         android:layout_height="0.5dp"
         android:background="@color/gray" />
 
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:scaleType="fitXY"
+        android:layout_above="@+id/krybord_layout"
+        android:src="@drawable/touming"/>
 
     <include
         android:id="@+id/krybord_layout"

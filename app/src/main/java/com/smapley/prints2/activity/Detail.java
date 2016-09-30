@@ -662,20 +662,8 @@ public class Detail extends Activity {
                         checkBox.setChecked(false);
                         String result2 = JSON.parseObject(msg.obj.toString(), new TypeReference<String>() {
                         });
-                        boolean isSucc = false;
-                        for (int i = 0; i < result2.length(); i++) {
-                            String data = result2.substring(i, i + 1);
-                            if (data.equals("1")) {
-                                isSucc = true;
-                            }
-                        }
-                        if (isSucc) {
-                            Toast.makeText(Detail.this, "退码成功！", Toast.LENGTH_SHORT).show();
-                            getData(GETDATA1);
-                        } else {
-                            Toast.makeText(Detail.this, "退码失败！", Toast.LENGTH_SHORT).show();
-
-                        }
+                        getData(GETDATA1);
+                        Toast.makeText(Detail.this, result2, Toast.LENGTH_SHORT).show();
 
                         break;
                     case ERROR:
