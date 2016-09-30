@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -117,6 +118,9 @@ public class Data extends Fragment {
     @ViewInject(R.id.print_keybord)
     private View print_keybord;
 
+    @ViewInject(R.id.back)
+    private ImageView back;
+
     private List<TextView> itemList = new ArrayList<>();
     private List<TextView> itemIcoList = new ArrayList<>();
     private List<View> itemLayoutList = new ArrayList<>();
@@ -153,7 +157,14 @@ public class Data extends Fragment {
     }
 
     private void initView(View view) {
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                print_keybord.setVisibility(View.GONE);
+                back.setVisibility(View.GONE);
+                ((MainActivity) getActivity()).bottom.setVisibility(View.VISIBLE);
+            }
+        });
         tv_title3.setText("保存");
 
         itemLayoutList.clear();
@@ -298,7 +309,7 @@ public class Data extends Fragment {
         return true;
     }
 
-    @Event(value = {R.id.back, R.id.title_item3, R.id.data_ev_item13_layout, R.id.data_ev_item23_layout, R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout, R.id.data_ev_item63_layout,
+    @Event(value = { R.id.title_item3, R.id.data_ev_item13_layout, R.id.data_ev_item23_layout, R.id.data_ev_item33_layout, R.id.data_ev_item43_layout, R.id.data_ev_item53_layout, R.id.data_ev_item63_layout,
             R.id.key_item1, R.id.key_item2, R.id.key_item3, R.id.key_item5, R.id.key_item6, R.id.key_item7, R.id.key_item9,
             R.id.key_item10, R.id.key_item11, R.id.key_item8, R.id.key_item12, R.id.key_item13, R.id.key_item15},
     type = View.OnClickListener.class)
@@ -307,10 +318,8 @@ public class Data extends Fragment {
             case R.id.title_item3:
                 upData();
                 break;
-            case R.id.back:
-                print_keybord.setVisibility(View.GONE);
-                ((MainActivity) getActivity()).bottom.setVisibility(View.VISIBLE);
-                break;
+
+
             case R.id.data_ev_item13_layout:
                 editItem(0);
                 break;
@@ -373,6 +382,7 @@ public class Data extends Fragment {
             }
         }
         print_keybord.setVisibility(View.VISIBLE);
+        back.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).bottom.setVisibility(View.GONE);
 
     }

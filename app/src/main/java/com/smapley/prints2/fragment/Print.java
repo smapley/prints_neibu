@@ -281,6 +281,14 @@ public class Print extends Fragment implements View.OnClickListener {
         keyitem14 = (TextView) view.findViewById(R.id.key_item14);
         keyitem15 = (TextView) view.findViewById(R.id.key_item15);
         tag = (TextView) view.findViewById(R.id.text_tag);
+        tag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keybord.setVisibility(View.GONE);
+                back.setVisibility(View.GONE);
+                ((MainActivity) getActivity()).bottom.setVisibility(View.VISIBLE);
+            }
+        });
         xiane = (TextView) view.findViewById(R.id.text_xiane);
 
         keyitem1.setOnClickListener(this);

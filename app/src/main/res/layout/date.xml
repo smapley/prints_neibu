@@ -350,13 +350,19 @@
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="match_parent"
-                android:layout_height="70dp" />
+
         </LinearLayout>
     </ScrollView>
-
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:scaleType="fitXY"
+        android:layout_marginRight="130dp"
+        android:layout_above="@+id/print_keybord"
+        android:src="@drawable/touming"/>
     <include
         layout="@layout/keybord"
         android:layout_width="match_parent"

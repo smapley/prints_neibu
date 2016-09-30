@@ -32,6 +32,7 @@ public class Chose extends Fragment implements View.OnClickListener {
     private TextView item5;
     private TextView item6;
     private TextView item7;
+    private TextView item8;
 
     private TextView qian;
     private TextView bai;
@@ -48,6 +49,11 @@ public class Chose extends Fragment implements View.OnClickListener {
     private TextView shi3;
     private TextView ge3;
 
+    private TextView qian4;
+    private TextView bai4;
+    private TextView shi4;
+    private TextView ge4;
+
     private TextView dao1;
     private TextView dao2;
     private TextView dao3;
@@ -60,6 +66,7 @@ public class Chose extends Fragment implements View.OnClickListener {
     private View item5_layout;
     private View item6_layout;
     private View item7_layout;
+    private View item8_layout;
 
     private TextView item1_clo;
     private TextView item2_clo;
@@ -68,6 +75,7 @@ public class Chose extends Fragment implements View.OnClickListener {
     private TextView item5_clo;
     private TextView item6_clo;
     private TextView item7_clo;
+    private TextView item8_clo;
 
     private LinearLayout keybord;
 
@@ -110,6 +118,11 @@ public class Chose extends Fragment implements View.OnClickListener {
     private boolean shi3_state = false;
     private boolean ge3_state = false;
 
+    private boolean qian4_state = false;
+    private boolean bai4_state = false;
+    private boolean shi4_state = false;
+    private boolean ge4_state = false;
+
     private boolean dao1_state = false;
     private boolean dao2_state = false;
     private boolean dao3_state = false;
@@ -141,6 +154,7 @@ public class Chose extends Fragment implements View.OnClickListener {
         item5 = (TextView) view.findViewById(R.id.chose_item5);
         item6 = (TextView) view.findViewById(R.id.chose_item6);
         item7 = (TextView) view.findViewById(R.id.chose_item7);
+        item8 = (TextView) view.findViewById(R.id.chose_item8);
 
         list_item = new ArrayList<>();
         list_item.add(item1);
@@ -150,6 +164,7 @@ public class Chose extends Fragment implements View.OnClickListener {
         list_item.add(item5);
         list_item.add(item6);
         list_item.add(item7);
+        list_item.add(item8);
 
         qian = (TextView) view.findViewById(R.id.chose_qian);
         bai = (TextView) view.findViewById(R.id.chose_bai);
@@ -165,6 +180,11 @@ public class Chose extends Fragment implements View.OnClickListener {
         bai3 = (TextView) view.findViewById(R.id.chose_bai3);
         shi3 = (TextView) view.findViewById(R.id.chose_shi3);
         ge3 = (TextView) view.findViewById(R.id.chose_ge3);
+
+        qian4 = (TextView) view.findViewById(R.id.chose_qian4);
+        bai4 = (TextView) view.findViewById(R.id.chose_bai4);
+        shi4 = (TextView) view.findViewById(R.id.chose_shi4);
+        ge4 = (TextView) view.findViewById(R.id.chose_ge4);
 
         dao1 = (TextView) view.findViewById(R.id.chose_dao1);
         dao2 = (TextView) view.findViewById(R.id.chose_dao2);
@@ -182,6 +202,7 @@ public class Chose extends Fragment implements View.OnClickListener {
         item5_clo = (TextView) view.findViewById(R.id.chose_item5_clo);
         item6_clo = (TextView) view.findViewById(R.id.chose_item6_clo);
         item7_clo = (TextView) view.findViewById(R.id.chose_item7_clo);
+        item8_clo = (TextView) view.findViewById(R.id.chose_item8_clo);
 
         list_clo = new ArrayList<>();
         list_clo.add(item1_clo);
@@ -191,6 +212,7 @@ public class Chose extends Fragment implements View.OnClickListener {
         list_clo.add(item5_clo);
         list_clo.add(item6_clo);
         list_clo.add(item7_clo);
+        list_clo.add(item8_clo);
 
         item1_layout = view.findViewById(R.id.chose_item1_layout);
         item2_layout = view.findViewById(R.id.chose_item2_layout);
@@ -199,6 +221,7 @@ public class Chose extends Fragment implements View.OnClickListener {
         item5_layout = view.findViewById(R.id.chose_item5_layout);
         item6_layout = view.findViewById(R.id.chose_item6_layout);
         item7_layout = view.findViewById(R.id.chose_item7_layout);
+        item8_layout = view.findViewById(R.id.chose_item8_layout);
 
         item1_layout.setOnClickListener(this);
         item2_layout.setOnClickListener(this);
@@ -207,6 +230,7 @@ public class Chose extends Fragment implements View.OnClickListener {
         item5_layout.setOnClickListener(this);
         item6_layout.setOnClickListener(this);
         item7_layout.setOnClickListener(this);
+        item8_layout.setOnClickListener(this);
 
         qian.setOnClickListener(this);
         bai.setOnClickListener(this);
@@ -222,6 +246,11 @@ public class Chose extends Fragment implements View.OnClickListener {
         bai3.setOnClickListener(this);
         shi3.setOnClickListener(this);
         ge3.setOnClickListener(this);
+
+        qian4.setOnClickListener(this);
+        bai4.setOnClickListener(this);
+        shi4.setOnClickListener(this);
+        ge4.setOnClickListener(this);
 
         dao1.setOnClickListener(this);
         dao2.setOnClickListener(this);
@@ -302,6 +331,10 @@ public class Chose extends Fragment implements View.OnClickListener {
                 now_position = 6;
                 showKeybord();
                 break;
+            case R.id.chose_item8_layout:
+                now_position = 7;
+                showKeybord();
+                break;
             case R.id.chose_qian:
                 qian_state = !qian_state;
                 setBack(view, qian_state);
@@ -363,6 +396,27 @@ public class Chose extends Fragment implements View.OnClickListener {
                 chose(2, 3, ge3_state);
 
                 break;
+            case R.id.chose_qian4:
+                qian4_state = !qian4_state;
+                setBack(view, qian4_state);
+                chose(3, 0, qian4_state);
+                break;
+            case R.id.chose_bai4:
+                bai4_state = !bai4_state;
+                setBack(view, bai4_state);
+                chose(3, 1, bai4_state);
+                break;
+            case R.id.chose_shi4:
+                shi4_state = !shi4_state;
+                setBack(view, shi4_state);
+                chose(3, 2, shi4_state);
+                break;
+            case R.id.chose_ge4:
+                ge4_state = !ge4_state;
+                setBack(view, ge4_state);
+                chose(3, 3, ge4_state);
+
+                break;
             case R.id.chose_dao1:
                 if (check2(3)) {
                     dao1_state = !dao1_state;
@@ -406,6 +460,7 @@ public class Chose extends Fragment implements View.OnClickListener {
                     intent.putExtra("item5", item5.getText().toString());
                     intent.putExtra("item6", item6.getText().toString());
                     intent.putExtra("item7", item7.getText().toString());
+                    intent.putExtra("item8", item8.getText().toString());
                     intent.putExtra("qian", qian_state);
                     intent.putExtra("bai", bai_state);
                     intent.putExtra("shi", shi_state);
@@ -418,6 +473,10 @@ public class Chose extends Fragment implements View.OnClickListener {
                     intent.putExtra("bai3", bai3_state);
                     intent.putExtra("shi3", shi3_state);
                     intent.putExtra("ge3", ge3_state);
+                    intent.putExtra("qian4", qian4_state);
+                    intent.putExtra("bai4", bai4_state);
+                    intent.putExtra("shi4", shi4_state);
+                    intent.putExtra("ge4", ge4_state);
                     intent.putExtra("dao1", dao1_state);
                     intent.putExtra("dao2", dao2_state);
                     intent.putExtra("dao3", dao3_state);
@@ -498,6 +557,11 @@ public class Chose extends Fragment implements View.OnClickListener {
                 onClick(item7_layout);
                 item7.setText(data2);
                 break;
+            case 3:
+                String data3 = item8.getText().toString();
+                onClick(item8_layout);
+                item8.setText(data3);
+                break;
 
         }
 
@@ -513,19 +577,19 @@ public class Chose extends Fragment implements View.OnClickListener {
             if (data.equals("")) {
                 switch (item) {
                     case 0:
-                        if (qian_state || qian2_state || qian3_state)
+                        if (qian_state || qian2_state || qian3_state||qian4_state)
                             return;
                         break;
                     case 1:
-                        if (bai_state || bai2_state || bai3_state)
+                        if (bai_state || bai2_state || bai3_state||bai4_state)
                             return;
                         break;
                     case 2:
-                        if (shi_state || shi2_state || shi3_state)
+                        if (shi_state || shi2_state || shi3_state||shi4_state)
                             return;
                         break;
                     case 3:
-                        if (ge_state || ge2_state || ge3_state)
+                        if (ge_state || ge2_state || ge3_state||ge4_state)
                             return;
                         break;
                 }
@@ -631,6 +695,14 @@ public class Chose extends Fragment implements View.OnClickListener {
         bai2_state = false;
         shi2_state = false;
         ge2_state = false;
+        qian3_state = false;
+        bai3_state = false;
+        shi3_state = false;
+        ge3_state = false;
+        qian4_state = false;
+        bai4_state = false;
+        shi4_state = false;
+        ge4_state = false;
         setBack(qian, qian_state);
         setBack(bai, bai_state);
         setBack(shi, shi_state);
@@ -639,6 +711,14 @@ public class Chose extends Fragment implements View.OnClickListener {
         setBack(bai2, bai2_state);
         setBack(shi2, shi2_state);
         setBack(ge2, ge2_state);
+        setBack(qian3, qian3_state);
+        setBack(bai3, bai3_state);
+        setBack(shi3, shi3_state);
+        setBack(ge3, ge3_state);
+        setBack(qian4, qian4_state);
+        setBack(bai4, bai4_state);
+        setBack(shi4, shi4_state);
+        setBack(ge4, ge4_state);
     }
 
     public void settitle(String title2) {

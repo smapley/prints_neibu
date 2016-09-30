@@ -40,6 +40,7 @@ public class NumList extends Activity implements View.OnClickListener {
     private String item5;
     private String item6;
     private String item7;
+    private String item8;
 
     private boolean qian;
     private boolean bai;
@@ -56,6 +57,11 @@ public class NumList extends Activity implements View.OnClickListener {
     private boolean shi3;
     private boolean ge3;
 
+    private boolean qian4;
+    private boolean bai4;
+    private boolean shi4;
+    private boolean ge4;
+
     private boolean dao1;
     private boolean dao2;
     private boolean dao3;
@@ -68,6 +74,7 @@ public class NumList extends Activity implements View.OnClickListener {
     private String[] item5s;
     private String[] item6s;
     private String[] item7s;
+    private String[] item8s;
 
 
     private String base = "0123456789";
@@ -158,9 +165,35 @@ public class NumList extends Activity implements View.OnClickListener {
         }
     }
 
+    private void create6(String data1, String data2, String data3, String data4) {
+        if (!qian4 && !bai4 && !shi4 && !ge4) {
+            list.add(data1 + data2 + data3 + data4);
+        } else {
+            int num = 0;
+
+            if (qian4) {
+                num = Integer.parseInt(data1);
+            }
+            if (bai4) {
+                num += Integer.parseInt(data2);
+            }
+            if (shi4) {
+                num += Integer.parseInt(data3);
+            }
+            if (ge4) {
+                num += Integer.parseInt(data4);
+            }
+            for (int i = 0; i < item8s.length; i++) {
+                if (num % 10 == Integer.parseInt(item8s[i])) {
+                    list.add(data1 + data2 + data3 + data4);
+                }
+            }
+        }
+    }
+
     private void create5(String data1, String data2, String data3, String data4) {
         if (!qian3 && !bai3 && !shi3 && !ge3) {
-            list.add(data1 + data2 + data3 + data4);
+            create6(data1, data2, data3, data4);
         } else {
             int num = 0;
 
@@ -178,7 +211,8 @@ public class NumList extends Activity implements View.OnClickListener {
             }
             for (int i = 0; i < item7s.length; i++) {
                 if (num % 10 == Integer.parseInt(item7s[i])) {
-                    list.add(data1 + data2 + data3 + data4);
+                    create6(data1, data2, data3, data4);
+
                 }
             }
         }
@@ -268,6 +302,7 @@ public class NumList extends Activity implements View.OnClickListener {
         item5s = new String[list_item.get(4).length()];
         item6s = new String[list_item.get(5).length()];
         item7s = new String[list_item.get(6).length()];
+        item8s = new String[list_item.get(7).length()];
         list_items.clear();
         list_items.add(item1s);
         list_items.add(item2s);
@@ -276,6 +311,7 @@ public class NumList extends Activity implements View.OnClickListener {
         list_items.add(item5s);
         list_items.add(item6s);
         list_items.add(item7s);
+        list_items.add(item8s);
 
         for (int i = 0; i < list_item.size(); i++) {
             for (int j = 0; j < list_item.get(i).length(); j++) {
@@ -293,6 +329,7 @@ public class NumList extends Activity implements View.OnClickListener {
         item5 = intent.getStringExtra("item5").length() == 0 ? base : intent.getStringExtra("item5");
         item6 = intent.getStringExtra("item6").length() == 0 ? base : intent.getStringExtra("item6");
         item7 = intent.getStringExtra("item7").length() == 0 ? base : intent.getStringExtra("item7");
+        item8 = intent.getStringExtra("item8").length() == 0 ? base : intent.getStringExtra("item8");
 
 
         list_item.add(item1);
@@ -302,6 +339,7 @@ public class NumList extends Activity implements View.OnClickListener {
         list_item.add(item5);
         list_item.add(item6);
         list_item.add(item7);
+        list_item.add(item8);
 
         qian = intent.getBooleanExtra("qian", false);
         bai = intent.getBooleanExtra("bai", false);
@@ -317,6 +355,11 @@ public class NumList extends Activity implements View.OnClickListener {
         bai3 = intent.getBooleanExtra("bai3", false);
         shi3 = intent.getBooleanExtra("shi3", false);
         ge3 = intent.getBooleanExtra("ge3", false);
+
+        qian4 = intent.getBooleanExtra("qian4", false);
+        bai4 = intent.getBooleanExtra("bai4", false);
+        shi4 = intent.getBooleanExtra("shi4", false);
+        ge4 = intent.getBooleanExtra("ge4", false);
 
         dao1 = intent.getBooleanExtra("dao1", false);
         dao2 = intent.getBooleanExtra("dao2", false);
@@ -448,7 +491,7 @@ public class NumList extends Activity implements View.OnClickListener {
                     number = number.substring(0, number.length() - 1);
                     map.put("number", number);
                     map.put("mi", MyData.PassWord);
-                    mhandler.obtainMessage(UPDATA, HttpUtils.updata(map, MyData.getUrlIndex1())).sendToTarget();
+                    mhandler.obtainMessage(UPDATA, HttpUtils.updata(map, MyData.getUrlIndexKX())).sendToTarget();
 
                 }
             }).start();
