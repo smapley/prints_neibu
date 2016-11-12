@@ -1,15 +1,21 @@
 package com.smapley.prints2.activity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -18,11 +24,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.lvrenyang.rwbt.BTHeartBeatThread;
-import com.lvrenyang.rwusb.USBHeartBeatThread;
-import com.lvrenyang.rwwifi.NETHeartBeatThread;
-import com.lvrenyang.utils.DataUtils;
-import com.lvrenyang.utils.FileUtils;
 import com.smapley.prints2.R;
 import com.smapley.prints2.adapter.Main_Viewpage_Adapter;
 import com.smapley.prints2.fragment.Chose;
@@ -34,6 +35,8 @@ import com.smapley.prints2.print.WorkService;
 import com.smapley.prints2.util.CustomViewPager;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
+
+import org.xutils.common.util.LogUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -95,9 +98,36 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initView();
         initViewPage();
-        initPrint();
+        checkBluetoothPermission();
         mainActivity=this;
 
+
+    }
+
+    /*
+       校验蓝牙权限
+      */
+    private void checkBluetoothPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            LogUtil.d("------>>23+");
+            //校验是否已具有模糊定位权限
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                LogUtil.d("------>>没有权限");
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        11);
+            } else {
+                //具有权限
+                LogUtil.d("------>>有权限");
+                initPrint();
+            }
+        } else {
+            //系统不高于6.0直接执行
+            LogUtil.d("------>>23-");
+            initPrint();
+        }
     }
 
     private void initView() {
@@ -192,14 +222,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             startService(intent);
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (WorkService.workThread == null) {
-                }
-                mhandler.obtainMessage(CONNECTBT).sendToTarget();
-            }
-        }).start();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[]
+            grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==11){
+            initPrint();
+        }
     }
 
     /**
