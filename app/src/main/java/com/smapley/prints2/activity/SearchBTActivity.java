@@ -1,7 +1,6 @@
 package com.smapley.prints2.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -10,8 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -21,22 +18,29 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.lvrenyang.io.BTPrinting;
+import com.lvrenyang.io.IOCallBack;
+import com.lvrenyang.io.Pos;
 import com.smapley.prints2.R;
-import com.smapley.prints2.print.Global;
-import com.smapley.prints2.print.WorkService;
 
-import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class SearchBTActivity extends Activity implements OnClickListener {
+public class SearchBTActivity extends Activity implements OnClickListener, IOCallBack {
 
     private LinearLayout linearlayoutdevices;
     private ProgressBar progressBarSearchStatus;
-    private ProgressDialog dialog;
 
     private BroadcastReceiver broadcastReceiver = null;
     private IntentFilter intentFilter = null;
 
-    private static Handler mHandler = null;
+    private Button btnSearch;
+   SearchBTActivity mActivity;
+
+    ExecutorService es = Executors.newScheduledThreadPool(30);
+    Pos mPos = new Pos();
+    BTPrinting mBt = new BTPrinting();
+
     private static String TAG = "SearchBTActivity";
     private SharedPreferences sp_user;
 
@@ -45,23 +49,21 @@ public class SearchBTActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchbt);
         sp_user = getSharedPreferences("user", MODE_PRIVATE);
-
-        findViewById(R.id.buttonSearch).setOnClickListener(this);
+        mActivity = this;
         progressBarSearchStatus = (ProgressBar) findViewById(R.id.progressBarSearchStatus);
         linearlayoutdevices = (LinearLayout) findViewById(R.id.linearlayoutdevices);
-        dialog = new ProgressDialog(this);
+
+        btnSearch = (Button) findViewById(R.id.buttonSearch);
+        btnSearch.setOnClickListener(this);
+        btnSearch.setEnabled(true);
+
 
         initBroadcast();
-
-        mHandler = new MHandler(this);
-        WorkService.addHandler(mHandler);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        WorkService.delHandler(mHandler);
-        mHandler = null;
         uninitBroadcast();
     }
 
@@ -103,7 +105,6 @@ public class SearchBTActivity extends Activity implements OnClickListener {
                 String action = intent.getAction();
                 BluetoothDevice device = intent
                         .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-
                 if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                     if (device == null)
                         return;
@@ -115,22 +116,36 @@ public class SearchBTActivity extends Activity implements OnClickListener {
                         name = "BT";
                     Button button = new Button(context);
                     button.setText(name + ": " + address);
-                    button.setGravity(Gravity.CENTER_VERTICAL
+
+                    for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                    {
+                        Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                        if(btn.getText().equals(button.getText()))
+                        {
+                            return;
+                        }
+                    }
+                    button.setGravity(android.view.Gravity.CENTER_VERTICAL
                             | Gravity.LEFT);
                     button.setOnClickListener(new OnClickListener() {
 
                         public void onClick(View arg0) {
                             // TODO Auto-generated method stub
                             // 只有没有连接且没有在用，这个才能改变状态
-                            dialog.setMessage(Global.toast_connecting + " "
-                                    + address);
-                            dialog.setIndeterminate(true);
-                            dialog.setCancelable(false);
-                            dialog.show();
+                            Toast.makeText(mActivity, "正在链接....", Toast.LENGTH_SHORT).show();
+                            btnSearch.setEnabled(false);
+                            linearlayoutdevices.setEnabled(false);
+                            for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                            {
+                                Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                                btn.setEnabled(false);
+                            }
+
                             SharedPreferences.Editor editor = sp_user.edit();
                             editor.putString("address", address);
                             editor.commit();
-                            WorkService.workThread.connectBt(address);
+
+                            es.submit(new TaskOpen(mBt,address, mActivity));
                         }
                     });
                     button.getBackground().setAlpha(100);
@@ -158,37 +173,83 @@ public class SearchBTActivity extends Activity implements OnClickListener {
             unregisterReceiver(broadcastReceiver);
     }
 
-    static class MHandler extends Handler {
+    public class TaskOpen implements Runnable
+    {
+        BTPrinting bt = null;
+        String address = null;
+        Context context = null;
 
-        WeakReference<SearchBTActivity> mActivity;
-
-        MHandler(SearchBTActivity activity) {
-            mActivity = new WeakReference<SearchBTActivity>(activity);
+        public TaskOpen(BTPrinting bt, String address, Context context)
+        {
+            this.bt = bt;
+            this.address = address;
+            this.context = context;
         }
 
         @Override
-        public void handleMessage(Message msg) {
-            SearchBTActivity theActivity = mActivity.get();
-            switch (msg.what) {
-                /**
-                 * DrawerService 的 onStartCommand会发送这个消息
-                 */
-
-                case Global.MSG_WORKTHREAD_SEND_CONNECTBTRESULT: {
-                    int result = msg.arg1;
-                    Toast.makeText(
-                            theActivity,
-                            (result == 1) ? Global.toast_success
-                                    : Global.toast_fail, Toast.LENGTH_SHORT).show();
-                    Log.v(TAG, "Connect Result: " + result);
-                    theActivity.dialog.cancel();
-                    break;
-                }
-
-            }
+        public void run() {
+            // TODO Auto-generated method stub
+            bt.Open(address,context);
         }
-
-
     }
+
+    @Override
+    public void OnOpen() {
+        // TODO Auto-generated method stub
+        this.runOnUiThread(new Runnable(){
+
+            @Override
+            public void run() {
+                btnSearch.setEnabled(false);
+                linearlayoutdevices.setEnabled(false);
+                for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                {
+                    Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                    btn.setEnabled(false);
+                }
+                Toast.makeText(mActivity, "链接成功!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void OnOpenFailed() {
+        // TODO Auto-generated method stub
+        this.runOnUiThread(new Runnable(){
+
+            @Override
+            public void run() {
+                btnSearch.setEnabled(true);
+                linearlayoutdevices.setEnabled(true);
+                for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                {
+                    Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                    btn.setEnabled(true);
+                }
+                Toast.makeText(mActivity, "链接失败!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void OnClose() {
+        // TODO Auto-generated method stub
+        this.runOnUiThread(new Runnable(){
+
+            @Override
+            public void run() {
+                btnSearch.setEnabled(true);
+                linearlayoutdevices.setEnabled(true);
+                for(int i = 0; i < linearlayoutdevices.getChildCount(); ++i)
+                {
+                    Button btn = (Button)linearlayoutdevices.getChildAt(i);
+                    btn.setEnabled(true);
+                }
+            }
+        });
+    }
+
+
+
 
 }

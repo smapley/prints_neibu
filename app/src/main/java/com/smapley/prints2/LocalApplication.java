@@ -25,5 +25,8 @@ public class LocalApplication extends Application {
         x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
         instance = this;
+
+
+
     }
 }

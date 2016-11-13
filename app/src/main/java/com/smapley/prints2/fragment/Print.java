@@ -33,7 +33,6 @@ import com.smapley.prints2.listview.SwipeMenu;
 import com.smapley.prints2.listview.SwipeMenuCreator;
 import com.smapley.prints2.listview.SwipeMenuItem;
 import com.smapley.prints2.listview.SwipeMenuListView;
-import com.smapley.prints2.print.WorkService;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
 
@@ -217,20 +216,7 @@ public class Print extends Fragment implements View.OnClickListener {
         tv_title3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (WorkService.workThread.isConnected()) {
-                    ((MainActivity) getActivity()).mhandler.obtainMessage(11).sendToTarget();
-                } else {
-                    ((MainActivity) getActivity()).connectBT();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            while (!WorkService.workThread.isConnected()) {
-
-                            }
-                            ((MainActivity) getActivity()).mhandler.obtainMessage(11).sendToTarget();
-                        }
-                    }).start();
-                }
+                ((MainActivity) getActivity()).mhandler.obtainMessage(11).sendToTarget();
             }
         });
 

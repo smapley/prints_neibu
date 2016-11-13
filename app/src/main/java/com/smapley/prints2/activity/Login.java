@@ -1,8 +1,11 @@
 package com.smapley.prints2.activity;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,6 +44,29 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+         	/* 启动WIFI */
+        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        switch (wifiManager.getWifiState()) {
+            case WifiManager.WIFI_STATE_DISABLED:
+                wifiManager.setWifiEnabled(true);
+                break;
+            default:
+                break;
+        }
+
+		/* 启动蓝牙 */
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        if (null != adapter) {
+            if (!adapter.isEnabled()) {
+                if (!adapter.enable())
+                {
+                    finish();
+                    return;
+                }
+            }
+        }
+
         initData();
         if (isLogin1 || isLogin2) {
             MyData.User = 1;

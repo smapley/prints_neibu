@@ -2,7 +2,7 @@ package com.smapley.prints2.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,40 +10,34 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.lvrenyang.rwbt.BTHeartBeatThread;
-import com.lvrenyang.rwusb.USBHeartBeatThread;
-import com.lvrenyang.rwwifi.NETHeartBeatThread;
-import com.lvrenyang.utils.DataUtils;
-import com.lvrenyang.utils.FileUtils;
+import com.lvrenyang.io.BTPrinting;
+import com.lvrenyang.io.IOCallBack;
+import com.lvrenyang.io.Pos;
 import com.smapley.prints2.R;
 import com.smapley.prints2.adapter.Main_Viewpage_Adapter;
 import com.smapley.prints2.fragment.Chose;
 import com.smapley.prints2.fragment.Data;
 import com.smapley.prints2.fragment.Print;
 import com.smapley.prints2.fragment.Set;
-import com.smapley.prints2.print.Global;
-import com.smapley.prints2.print.WorkService;
 import com.smapley.prints2.util.CustomViewPager;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {
-
+public class MainActivity extends FragmentActivity implements View.OnClickListener, IOCallBack {
 
     private TextView bottom_item1;
     private TextView bottom_item2;
@@ -61,7 +55,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private List<Fragment> fragmentList;
 
 
-    private static Handler mHandler = null;
     private static String TAG = "MainActivity";
     private final int UPDATA = 2;
     private final int UPDATA2 = 1;
@@ -78,14 +71,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public static int position = 1;
     public static MainActivity mainActivity;
 
+    ExecutorService es = Executors.newScheduledThreadPool(30);
 
+    Pos mPos = new Pos();
+    BTPrinting mBt = new BTPrinting();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         position = 1;
-
 
         sp_user = getSharedPreferences("user", MODE_PRIVATE);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -95,9 +90,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initView();
         initViewPage();
-        initPrint();
-        mainActivity=this;
 
+        mainActivity = this;
+
+        mPos.Set(mBt);
+        mBt.SetCallBack(this);
+        initPrint();
     }
 
     private void initView() {
@@ -177,29 +175,21 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         viewPager.setCurrentItem(num);
     }
+
     private void changeTitle(String title2) {
+        this.title2 = title2;
         chose.settitle(title2);
         set.settitle(title2);
     }
+
     private void initPrint() {
         // 初始化字符串资源
-        InitGlobalString();
-        mHandler = new MHandler(MainActivity.this);
-        WorkService.addHandler(mHandler);
-
-        if (null == WorkService.workThread) {
-            Intent intent = new Intent(this, WorkService.class);
-            startService(intent);
+        if (!mBt.IsOpened()) {
+            changeTitle(getString(R.string.print0));
+            connectBT();
+        } else {
+            changeTitle(getString(R.string.print1));
         }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (WorkService.workThread == null) {
-                }
-                mhandler.obtainMessage(CONNECTBT).sendToTarget();
-            }
-        }).start();
     }
 
     /**
@@ -208,27 +198,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void connectBT() {
         try {
             String address = sp_user.getString("address", "");
-            if (address != null && !address.isEmpty() ) {
-                if(!WorkService.workThread.isConnected()) {
-                    BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-                    if (null != adapter) {
-                        if (adapter.isEnabled()) {
-                            WorkService.workThread.connectBt(address);
-                            Toast.makeText(MainActivity.this, "正在连接打印机", Toast.LENGTH_SHORT).show();
-                        } else {
-                            if (adapter.enable()) {
-                                while (!adapter.isEnabled())
-                                    ;
-                                connectBT();
-                                Log.v(TAG, "Enable BluetoothAdapter");
-                            }
-                        }
-                    } else {
-                        Toast.makeText(MainActivity.this, "蓝牙功能不可用！", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            }else{
+            if (address != null && !address.isEmpty()) {
+                es.submit(new TaskOpen(mBt, address, mainActivity));
+                Toast.makeText(MainActivity.this, "正在连接打印机", Toast.LENGTH_SHORT).show();
+            } else {
                 Toast.makeText(MainActivity.this, "请先手动连接一次打印机！", Toast.LENGTH_SHORT).show();
 
             }
@@ -238,11 +211,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
-    private void InitGlobalString() {
-        Global.toast_success = getString(R.string.toast_success);
-        Global.toast_fail = getString(R.string.toast_fail);
-        Global.toast_notconnect = getString(R.string.toast_notconnect);
-        Global.toast_usbpermit = getString(R.string.toast_usbpermit);
+
+    public class TaskOpen implements Runnable {
+        BTPrinting bt = null;
+        String address = null;
+        Context context = null;
+
+        public TaskOpen(BTPrinting bt, String address, Context context) {
+            this.bt = bt;
+            this.address = address;
+            this.context = context;
+        }
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            bt.Open(address, context);
+        }
     }
 
 
@@ -280,7 +265,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
-    private String qishu="";
+    private String qishu = "";
     public Handler mhandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -290,12 +275,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             try {
                 switch (msg.what) {
                     case CANUPDATA:
-                        if (print.dataList.size() > 1) {
-                            upData(true, MyData.getUrlDayin());
-                        } else {
-                            upData(false, MyData.getUrlDayin());
-
+                        if(mPos.GetIO().IsOpened()) {
+                            if (print.dataList.size() > 1) {
+                                upData(true, MyData.getUrlDayin());
+                            } else {
+                                upData(false, MyData.getUrlDayin());
+                            }
+                        }else{
+                            Toast.makeText(mainActivity,"打印机未连接,请连接打印机后重试!",Toast.LENGTH_SHORT).show();
                         }
+
                         break;
                     case CONNECTBT:
                         connectBT();
@@ -321,13 +310,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         break;
                     case UPDATA:
                         dialog.dismiss();
-
                         map = JSON.parseObject(msg.obj.toString(), new TypeReference<Map>() {
                         });
                         if (Integer.parseInt(map.get("count").toString()) > 0) {
                             qishu = map.get("qishu").toString();
                             mhandler.obtainMessage(PRINT).sendToTarget();
-
                         } else {
                             builder.setMessage(R.string.dialog_item3);
                             builder.setPositiveButton(R.string.dialog_item7, null);
@@ -340,139 +327,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         builder.setMessage(R.string.dialog_item4);
                         dialog = builder.create();
                         dialog.show();
-                        allidString = map.get("allid").toString();
-                        String allid = "编号：" + allidString;
-                        String riqi = "日期：" + map.get("riqi").toString();
-                        String name = "会员：" + map.get("ming").toString();
-                        String qihao =  qishu ;
-                        String allnum = " 笔数 " + map.get("count") + "  总金额 " + map.get("allgold") + "元";
-                        String lin = " ";
-                        String lin2 = "————————————————————————————————";
-                        String dataString = map.get("beizhu").toString();
-                        List<Map<String, String>> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map<String, String>>>() {
-                        });
-                        String number = "号码";
-                        String gold = "金额";
-                        String pei = "1元赔率";
-
-                        byte[] setHT = {0x1b, 0x44, 0x01, 0x0e, 0x16, 0x00,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x21, 0x28,
-                                0x1b, 0x33, 0x30};
-
-                        byte[] setHT0 = {0x1b, 0x44, 0x04, 0x0d, 0x17, 0x00,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x33, 0x35};
-
-                        byte[] text1 = new byte[]{
-                                //初始化打印机
-                                0x1b, 0x40,
-                                // 对齐方式
-                                0x1b, 0x61, 0x01,
-                                // 打印方式
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                // 行间距
-                                0x1b, 0x33, 0x30};
-                        byte[] text0 = new byte[]{0x1b, 0x40,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x33, 0x20};
-                        byte[] text4 = new byte[]{0x1b, 0x40,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x33, 0x10};
-                        byte[] text3 = new byte[]{0x1b, 0x40,
-                                0x1b, 0x61, 0x01,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x33, 0x10};
-                        byte[] HT = {0x09};
-                        byte[] LF = {0x0d, 0x0a};
-
-                        int num = 19;
-                        int loops = 6;
-                        int size = num + list.size() * loops + 18;
-                        byte[][] databuf = new byte[size][];
-
-
-                        databuf[0] = text0;
-                        databuf[1] = riqi.getBytes();
-                        databuf[2] = LF;
-                        databuf[3] = name.getBytes("UTF-8");
-                        databuf[4] = LF;
-                        databuf[5] = allid.getBytes();
-                        databuf[6] = LF;
-                        databuf[7] = dataString.getBytes();
-                        databuf[8] = LF;
-                        databuf[9] = text3;
-                        databuf[10] = lin2.getBytes();
-                        databuf[11] = LF;
-                        databuf[12] = setHT0;
-                        databuf[13] = number.getBytes();
-                        databuf[14] = HT;
-                        databuf[15] = gold.getBytes();
-                        databuf[16] = HT;
-                        databuf[17] = pei.getBytes();
-                        databuf[18] = LF;
-                        databuf[19] = setHT;
-
-
-                        for (int i = 0; i < list.size(); i++) {
-
-                            databuf[i * loops + num + 1] = list.get(i).get("number").getBytes();
-                            databuf[i * loops + num + 2] = HT;
-                            databuf[i * loops + num + 3] = list.get(i).get("gold").getBytes();
-                            databuf[i * loops + num + 4] = HT;
-                            String data = list.get(i).get("pei");
-                            databuf[i * loops + num + 5] = data.getBytes();
-                            databuf[i * loops + num + 6] = LF;
-                            Log.i(TAG, "1");
-                        }
-                        Log.i(TAG, "1");
-
-                        databuf[size - 18] = LF;
-                        databuf[size - 17] = text4;
-                        databuf[size - 16] = LF;
-                        databuf[size - 15] = allnum.getBytes();
-                        databuf[size - 14] = LF;
-                        databuf[size - 13] = text3;
-                        databuf[size - 12] = lin2.getBytes();
-                        databuf[size - 11] = LF;
-                        databuf[size - 10] = qihao.getBytes();
-                        databuf[size - 9] = LF;
-                        databuf[size - 8] = lin.getBytes();
-                        databuf[size - 7] = LF;
-                        databuf[size - 6] = lin.getBytes();
-                        databuf[size - 5] = LF;
-                        databuf[size - 4] = lin.getBytes();
-                        databuf[size - 3] = LF;
-                        databuf[size - 2] = lin.getBytes();
-                        databuf[size - 1] = LF;
-                        Log.i(TAG, "1");
-
-
-                        byte[] buf = DataUtils.byteArraysToBytes(databuf);
-
-                        if (WorkService.workThread.isConnected()) {
-                            Bundle data = new Bundle();
-                            data.putByteArray(Global.BYTESPARA1, buf);
-                            data.putInt(Global.INTPARA1, 0);
-                            data.putInt(Global.INTPARA2, buf.length);
-                            WorkService.workThread.handleCmd(Global.CMD_POS_WRITE, data);
-                        } else {
-                            dialog.dismiss();
-                            builder.setMessage(R.string.dialog_item10);
-                            builder.setNegativeButton(R.string.dialog_item5, null);
-                            dialog = builder.create();
-                            dialog.show();
-                            Toast.makeText(MainActivity.this, Global.toast_notconnect, Toast.LENGTH_SHORT).show();
-                        }
+                        es.submit(new TaskPrint(mPos,map));
                         break;
                 }
 
@@ -482,94 +337,145 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     };
 
-    static class MHandler extends Handler {
-
-        WeakReference<MainActivity> mActivity;
-
-        MHandler(MainActivity activity) {
-            mActivity = new WeakReference<MainActivity>(activity);
+    public class TaskPrint implements Runnable {
+        Pos pos = null;
+        Map map =null;
+        public TaskPrint(Pos pos, Map map ) {
+            this.pos = pos;
+            this.map = map;
         }
 
         @Override
-        public void handleMessage(Message msg) {
-            final MainActivity theActivity = mActivity.get();
-            switch (msg.what) {
-                case Global.CMD_POS_WRITERESULT: {
-                    try {
-                        dialog.dismiss();
-                        Detail.dialog.dismiss();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    int result = msg.arg1;
-                    if (result == 1) {
-                        Toast toast = Toast.makeText(theActivity, R.string.dialog_item8, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                        theActivity.upData2();
-                    } else {
-                        Toast toast = Toast.makeText(theActivity, R.string.dialog_item9, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }
+        public void run() {
+            // TODO Auto-generated method stub
 
-                    Log.v(TAG, "Result: " + result);
-                    break;
-                }
-                /**
-                 * DrawerService 的 onStartCommand会发送这个消息
-                 */
-                case Global.MSG_ALLTHREAD_READY: {
-                    Log.v("MHandler", "MSG_ALLTHREAD_READY");
-                    if (WorkService.workThread.isConnected()) {
-                        title2 = theActivity.getString(R.string.print1);
-                    } else {
-                        title2 = theActivity.getString(R.string.print0);
-                    }
-                    theActivity.changeTitle(title2);
-                    FileUtils.AddToFile("MHandler MSG_ALLTHREAD_READY\r\n",
-                            FileUtils.sdcard_dump_txt);
-                    break;
-                }
+            final boolean bPrintResult = PrintTicket(map);
 
-                case BTHeartBeatThread.MSG_BTHEARTBEATTHREAD_UPDATESTATUS:
-                case NETHeartBeatThread.MSG_NETHEARTBEATTHREAD_UPDATESTATUS:
-                case USBHeartBeatThread.MSG_USBHEARTBEATTHREAD_UPDATESTATUS: {
-                    int statusOK = msg.arg1;
-                    int status = msg.arg2;
-                    Log.v(TAG,
-                            "statusOK: " + statusOK + " status: "
-                                    + DataUtils.byteToStr((byte) status));
-                    if (statusOK == 1) {
-                        title2 = theActivity.getString(R.string.print1);
-                    } else {
-                        title2 = theActivity.getString(R.string.print0);
-                    }
-                    theActivity.changeTitle(title2);
-                    FileUtils.DebugAddToFile("statusOK: " + statusOK + " status: "
-                                    + DataUtils.byteToStr((byte) status) + "\r\n",
-                            FileUtils.sdcard_dump_txt);
-                    break;
+            mainActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    dialog.dismiss();
+                    if(bPrintResult)
+                        upData2();
+                    Toast.makeText(mainActivity.getApplicationContext(), bPrintResult ? "打印成功" : "打印失败", Toast.LENGTH_SHORT).show();
                 }
+            });
 
-                case Global.CMD_POS_PRINTPICTURERESULT:
-                case Global.CMD_POS_WRITE_BT_FLOWCONTROL_RESULT: {
-                    int result = msg.arg1;
-                    Log.v(TAG, "Result: " + result);
-                    break;
-                }
-            }
         }
 
+        public boolean PrintTicket(Map map) {
+                                    allidString = map.get("allid").toString();
+                        String allid = "编号：" + allidString;
+                        String riqi = "日期：" + map.get("riqi").toString();
+                        String name = "会员：" + map.get("ming").toString();
+                        String qihao =  qishu ;
+                        String allnum = " 笔数 " + map.get("count") + "  总金额 " + map.get("allgold") + "元";
+                        String lin2 = "————————————————————————————————";
+                        String dataString = map.get("beizhu").toString();
+                        List<Map<String, String>> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map<String, String>>>() {
+                        });
+            pos.POS_S_Align(0);
+            pos.POS_SetLineHeight(35);
+            printText(pos, riqi);
+            printText(pos, name);
+            printText(pos, allid);
+            printText(pos, dataString);
+            printText(pos, lin2);
+            pos.POS_SetLineHeight(40);
+            printLable(pos, new String[]{"号码","金额","一元赔率"},false);
+            for (int i = 0; i < list.size(); i++) {
+                printLable(pos, new String[]{list.get(i).get("number").toString(),list.get(i).get("gold").toString(),list.get(i).get("pei").toString()});
+            }
+            pos.POS_FeedLine();
+            pos.POS_SetLineHeight(35);
+            printText(pos, allnum);
+            printText(pos, lin2);
+            pos.POS_S_Align(1);
+            printText(pos, qihao);
+            pos.POS_FeedLine();
+            pos.POS_FeedLine();
+            pos.POS_Beep(1, 5);
+            return pos.GetIO().IsOpened();
+        }
     }
 
+    public void printLable(Pos pos, String[] text, boolean isNum){
+        int nWidthTimes=0;
+        if(isNum){
+            nWidthTimes=1;
+        }
+        pos.POS_S_TextOut(text[0], 0, nWidthTimes, 0, 0, 0x00);
+        pos.POS_S_TextOut(text[1], 140, nWidthTimes, 0, 0, 0x00);
+        pos.POS_S_TextOut(text[2]+"\r\n", 256, nWidthTimes, 0, 0, 0x00);
+    }
 
+    public void printLable(Pos pos, String[] text) {
+        printLable(pos,text,true);
+    }
+
+    public void printText(Pos pos, String text) {
+        pos.POS_S_TextOut(text + "\r\n", 0, 0, 0, 0, 0x00);
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        WorkService.delHandler(mHandler);
-        mHandler = null;
+        es.submit(new TaskClose(mBt));
+    }
+
+    public class TaskClose implements Runnable {
+        BTPrinting bt = null;
+
+        public TaskClose(BTPrinting bt) {
+            this.bt = bt;
+        }
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            bt.Close();
+        }
+
+    }
+
+    @Override
+    public void OnOpen() {
+        // TODO Auto-generated method stub
+        this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                changeTitle(getString(R.string.print1));
+                Toast.makeText(mainActivity,getString(R.string.print1),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void OnOpenFailed() {
+        // TODO Auto-generated method stub
+        this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                changeTitle(getString(R.string.print0));
+                Toast.makeText(mainActivity,getString(R.string.print0),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void OnClose() {
+        // TODO Auto-generated method stub
+        this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                changeTitle(getString(R.string.print0));
+                Toast.makeText(mainActivity,getString(R.string.print0),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -587,8 +493,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onBackPressed();
         finish();
     }
-    public static void stop(){
+
+    public static void stop() {
         mainActivity.finish();
     }
-
 }

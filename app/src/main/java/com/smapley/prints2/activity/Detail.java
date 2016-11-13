@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.lvrenyang.utils.DataUtils;
+import com.lvrenyang.io.Pos;
 import com.smapley.prints2.R;
 import com.smapley.prints2.adapter.DetailAdapter;
 import com.smapley.prints2.adapter.DetailAdapter2;
@@ -30,8 +30,6 @@ import com.smapley.prints2.listview.SwipeMenu;
 import com.smapley.prints2.listview.SwipeMenuCreator;
 import com.smapley.prints2.listview.SwipeMenuItem;
 import com.smapley.prints2.listview.SwipeMenuListView;
-import com.smapley.prints2.print.Global;
-import com.smapley.prints2.print.WorkService;
 import com.smapley.prints2.util.HttpUtils;
 import com.smapley.prints2.util.MyData;
 
@@ -99,11 +97,13 @@ public class Detail extends Activity {
 
     private TextView delect;
 
+    private Detail mActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mActivity=this;
         x.view().inject(this);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -225,7 +225,7 @@ public class Detail extends Activity {
         re_print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (WorkService.workThread.isConnected()) {
+                if (MainActivity.mainActivity.mPos.GetIO().IsOpened()) {
                     upData();
                 } else {
                     Toast.makeText(Detail.this, "未连接到打印机！", Toast.LENGTH_SHORT).show();
@@ -526,136 +526,7 @@ public class Detail extends Activity {
                         builder.setMessage(R.string.dialog_item4);
                         dialog = builder.create();
                         dialog.show();
-                        allidString = map.get("allid").toString();
-                        String allid = "编号：" + allidString;
-                        String riqi = "日期：" + map.get("riqi").toString();
-                        String name = "会员：" + map.get("ming").toString();
-                        String qihao =  qishu ;
-                        String allnum = " 笔数 " + map.get("count") + "  总金额 " + map.get("allgold") + "元";
-                        String lin = " ";
-                        String lin2 = "————————————————————————————————";
-                        String dataString = map.get("beizhu").toString();
-                        List<Map<String, String>> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map<String, String>>>() {
-                        });
-                        String number = "号码";
-                        String gold = "金额";
-                        String pei = "1元赔率";
-
-                        byte[] setHT = {0x1b, 0x44, 0x01, 0x0e, 0x16, 0x00,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x21, 0x28,
-                                0x1b, 0x33, 0x30};
-
-                        byte[] setHT0 = {0x1b, 0x44, 0x04, 0x0d, 0x17, 0x00,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x33, 0x35};
-
-                        byte[] text1 = new byte[]{
-                                //初始化打印机
-                                0x1b, 0x40,
-                                // 对齐方式
-                                0x1b, 0x61, 0x01,
-                                // 打印方式
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                // 行间距
-                                0x1b, 0x33, 0x30};
-                        byte[] text0 = new byte[]{0x1b, 0x40,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x33, 0x20};
-                        byte[] text4 = new byte[]{0x1b, 0x40,
-                                0x1b, 0x61, 0x00,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x33, 0x10};
-                        byte[] text3 = new byte[]{0x1b, 0x40,
-                                0x1b, 0x61, 0x01,
-                                0x1b, 0x21, 0x08,
-                                0x1b, 0x39, 0x01,
-                                0x1b, 0x33, 0x10};
-                        byte[] HT = {0x09};
-                        byte[] LF = {0x0d, 0x0a};
-
-                        int num = 19;
-                        int loops = 6;
-                        int size = num + list.size() * loops + 18;
-                        byte[][] databuf = new byte[size][];
-
-
-                        databuf[0] = text0;
-                        databuf[1] = riqi.getBytes();
-                        databuf[2] = LF;
-                        databuf[3] = name.getBytes("UTF-8");
-                        databuf[4] = LF;
-                        databuf[5] = allid.getBytes();
-                        databuf[6] = LF;
-                        databuf[7] = dataString.getBytes();
-                        databuf[8] = LF;
-                        databuf[9] = text3;
-                        databuf[10] = lin2.getBytes();
-                        databuf[11] = LF;
-                        databuf[12] = setHT0;
-                        databuf[13] = number.getBytes();
-                        databuf[14] = HT;
-                        databuf[15] = gold.getBytes();
-                        databuf[16] = HT;
-                        databuf[17] = pei.getBytes();
-                        databuf[18] = LF;
-                        databuf[19] = setHT;
-
-
-                        for (int i = 0; i < list.size(); i++) {
-
-                            databuf[i * loops + num + 1] = list.get(i).get("number").getBytes();
-                            databuf[i * loops + num + 2] = HT;
-                            databuf[i * loops + num + 3] = list.get(i).get("gold").getBytes();
-                            databuf[i * loops + num + 4] = HT;
-                            String data = list.get(i).get("pei");
-                            databuf[i * loops + num + 5] = data.getBytes();
-                            databuf[i * loops + num + 6] = LF;
-                        }
-
-                        databuf[size - 18] = LF;
-                        databuf[size - 17] = text4;
-                        databuf[size - 16] = LF;
-                        databuf[size - 15] = allnum.getBytes();
-                        databuf[size - 14] = LF;
-                        databuf[size - 13] = text3;
-                        databuf[size - 12] = lin2.getBytes();
-                        databuf[size - 11] = LF;
-                        databuf[size - 10] = qihao.getBytes();
-                        databuf[size - 9] = LF;
-                        databuf[size - 8] = lin.getBytes();
-                        databuf[size - 7] = LF;
-                        databuf[size - 6] = lin.getBytes();
-                        databuf[size - 5] = LF;
-                        databuf[size - 4] = lin.getBytes();
-                        databuf[size - 3] = LF;
-                        databuf[size - 2] = lin.getBytes();
-                        databuf[size - 1] = LF;
-
-
-                        byte[] buf = DataUtils.byteArraysToBytes(databuf);
-
-                        if (WorkService.workThread.isConnected()) {
-                            Bundle data = new Bundle();
-                            data.putByteArray(Global.BYTESPARA1, buf);
-                            data.putInt(Global.INTPARA1, 0);
-                            data.putInt(Global.INTPARA2, buf.length);
-                            WorkService.workThread.handleCmd(Global.CMD_POS_WRITE, data);
-                        } else {
-                            dialog.dismiss();
-                            builder.setMessage(R.string.dialog_item10);
-                            builder.setNegativeButton(R.string.dialog_item5, null);
-                            dialog = builder.create();
-                            dialog.show();
-                            Toast.makeText(Detail.this, Global.toast_notconnect, Toast.LENGTH_SHORT).show();
-                        }
+                        MainActivity.mainActivity.es.submit(new TaskPrint( MainActivity.mainActivity.mPos,map));
                         break;
                     case DELECTS:
                         checkBox.setChecked(true);
@@ -690,5 +561,66 @@ public class Detail extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         MainActivity.mainActivity.print.getData();
+    }
+
+    public class TaskPrint implements Runnable {
+        Pos pos = null;
+        Map map =null;
+        public TaskPrint(Pos pos, Map map ) {
+            this.pos = pos;
+            this.map = map;
+        }
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+
+            final boolean bPrintResult = PrintTicket(map);
+
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    dialog.dismiss();
+                    Toast.makeText(mActivity.getApplicationContext(), bPrintResult ? "打印成功" : "打印失败", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
+        public boolean PrintTicket(Map map) {
+            allidString = map.get("allid").toString();
+            String allid = "编号：" + allidString;
+            String riqi = "日期：" + map.get("riqi").toString();
+            String name = "会员：" + map.get("ming").toString();
+            String qihao =  qishu ;
+            String allnum = " 笔数 " + map.get("count") + "  总金额 " + map.get("allgold") + "元";
+            String lin2 = "————————————————————————————————";
+            String dataString = map.get("beizhu").toString();
+            List<Map<String, String>> list = JSON.parseObject(map.get("result").toString(), new TypeReference<List<Map<String, String>>>() {
+            });
+            pos.POS_S_Align(0);
+            pos.POS_SetLineHeight(35);
+            MainActivity.mainActivity.printText(pos, riqi);
+            MainActivity.mainActivity. printText(pos, name);
+            MainActivity.mainActivity.printText(pos, allid);
+            MainActivity.mainActivity.printText(pos, dataString);
+            MainActivity.mainActivity.printText(pos, lin2);
+            pos.POS_SetLineHeight(40);
+            MainActivity.mainActivity.printLable(pos, new String[]{"号码","金额","一元赔率"},false);
+            for (int i = 0; i < list.size(); i++) {
+                MainActivity.mainActivity.printLable(pos, new String[]{list.get(i).get("number").toString(),list.get(i).get("gold").toString(),list.get(i).get("pei").toString()});
+            }
+            pos.POS_FeedLine();
+            pos.POS_SetLineHeight(35);
+            MainActivity.mainActivity.printText(pos, allnum);
+            MainActivity.mainActivity.printText(pos, lin2);
+            pos.POS_S_Align(1);
+            MainActivity.mainActivity. printText(pos, qihao);
+            pos.POS_FeedLine();
+            pos.POS_FeedLine();
+            pos.POS_Beep(1, 5);
+            return pos.GetIO().IsOpened();
+        }
     }
 }
